@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1775432586 source:/home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/TDA_PILA/main.c
+	<stdio.h>
+	<stdlib.h>
+	"TDA_Pila_Din.h"
+
+1775432160 /home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/TDA_PILA/TDA_Pila_Din.h
+	"../NODO/Nodo.h"
+
+1775168261 /home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/NODO/Nodo.h
+	<stdlib.h>
+	<stddef.h>
+	<string.h>
+	<stdbool.h>
+
+1775432440 source:/home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/TDA_PILA/TDA_Pila_Din.c
+	"TDA_Pila_Din.h"
+
+1775091314 source:/home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/NODO/Nodo.c
+	"Nodo.h"
+

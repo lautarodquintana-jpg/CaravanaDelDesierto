@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1775086628 source:/home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/NODO/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1775091314 source:/home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/NODO/Nodo.c
+	"Nodo.h"
+
+1775168261 /home/eric-avila/Escritorio/Nueva carpeta/estructuras de datos/NODO/Nodo.h
+	<stdlib.h>
+	<stddef.h>
+	<string.h>
+	<stdbool.h>
+
