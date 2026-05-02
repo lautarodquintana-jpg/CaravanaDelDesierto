@@ -1,6 +1,9 @@
 #ifndef TIPOS_H_INCLUDED
 #define TIPOS_H_INCLUDED
 
+#include <string.h>
+#include <stdio.h>
+
 #define TAM_NOMBRE 11
 
 typedef enum
