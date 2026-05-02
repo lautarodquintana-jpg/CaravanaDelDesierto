@@ -5,3 +5,38 @@
 
 1777320154 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tpcaravanadeldesierto.c
 
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\menu.c
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
+	"PilaDinamica.h"
+
+1777763644 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1777763644 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+
+1777764175 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\main.c
+	"config.h"
+
+1777764606 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.h
+	"tipos.h"
+
+1777763923 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+	<string.h>
+	<stdio.h>
+
+1777764606 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.c
+	"config.h"
+
