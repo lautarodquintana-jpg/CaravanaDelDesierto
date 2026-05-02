@@ -3,7 +3,7 @@
 
 #include <string.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 #define TAM_NOMBRE 11
 
 typedef enum
