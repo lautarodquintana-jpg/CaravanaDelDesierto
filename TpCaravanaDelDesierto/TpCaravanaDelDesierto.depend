@@ -1,7 +1,6 @@
 # depslib dependency file v1.0
-1777320835 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\main.c
-	<stdio.h>
-	<stdlib.h>
+1778437843 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\main.c
+	"config.h"
 
 1777320154 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tpcaravanadeldesierto.c
 
@@ -75,4 +74,51 @@
 
 1777765697 source:c:\users\usuario\documents\unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\main.c
 	"config.h"
+
+1777755501 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
+
+1778437843 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\config.c
+	"config.h"
+
+1778444198 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\config.h
+	"tipos.h"
+
+1778443779 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"config.h"
+
+1777755524 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+
+1777755470 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
+
+1777755748 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\menu.c
+
+1777755710 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+
+1777320154 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
+	"PilaDinamica.h"
+
+1777320154 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1777755660 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+
+1778446513 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
+	"listaSimplementeEnlazada.h"
+
+1778446453 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+	<stdlib.h>
+	<string.h>
+
+1778444131 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+	"tablero.h"
+
+1778443360 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+	"tipos.h"
+	"TDAs/listaSimplementeEnlazada.h"
 
