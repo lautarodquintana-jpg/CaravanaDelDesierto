@@ -147,7 +147,14 @@ int verUltimoLista(const tLista* p, void* d, unsigned cantBytes)
 
     return TODO_OK;
 }
-
+void mostrarLista(const tLista *p, Accion accion)
+{
+    while(*p)
+    {
+        accion((*p)->info);
+        p=&(*p)->sig;
+    }
+}
 int eliminarDeLista(tLista* p, void* d, unsigned cantBytes, Cmp cmp)
 {
     tNodo* elim;

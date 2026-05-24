@@ -122,3 +122,55 @@
 	"tipos.h"
 	"TDAs/listaSimplementeEnlazada.h"
 
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\config.c
+	"config.h"
+
+1779646818 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\config.h
+	"tipos.h"
+
+1779655169 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"config.h"
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
+
+1779658426 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\main.c
+	"config.h"
+	"TDAs/listaSimplementeEnlazada.h"
+	"tablero.h"
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\menu.c
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+
+1779655169 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
+	"listaSimplementeEnlazada.h"
+
+1779655169 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+	<stdlib.h>
+	<string.h>
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
+	"PilaDinamica.h"
+
+1779646806 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1779646806 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+
+1779658974 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+	"tablero.h"
+
+1779655169 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+	"tipos.h"
+	"TDAs/listaSimplementeEnlazada.h"
+

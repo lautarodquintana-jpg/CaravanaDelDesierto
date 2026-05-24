@@ -26,7 +26,7 @@ typedef tNodo* tLista;
 
 typedef int (*Cmp)(const void* e1, const void* e2);
 typedef void (*Actualizar)(void* actualizado, const void* actualizador);
-typedef void (*Accion)(void* elem, void* extra);
+typedef void (*Accion)(void* elem);
 
 void crearLista(tLista* p);
 int listaVacia(const tLista* p);
@@ -38,6 +38,7 @@ int verPrimeroLista(const tLista* p, void* d, unsigned cantBytes);
 int insertarAlFinal(tLista* p, const void* d, unsigned cantBytes);
 int sacarUltimoLista(tLista* p, void* d, unsigned cantBytes);
 int verUltimoLista(const tLista* p, void* d, unsigned cantBytes);
+void mostrarLista(const tLista *p, Accion accion);
 
 int eliminarElemDeLista(tLista* p, void* d, unsigned cantBytes, Cmp cmp);
 

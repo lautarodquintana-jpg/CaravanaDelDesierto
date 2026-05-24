@@ -1,10 +1,13 @@
 #include "config.h"
-int EjecutarMenu();
+#include "TDAs/listaSimplementeEnlazada.h"
+#include "tablero.h"
+int ejecutarMenu();
+int comenzarJuego(tLista *tab, const tConfig *config);
 int main()
 {
-    int num;
+    int num, ret;
     tConfig miConf;
-
+    tLista tab;
     //printf ("%d\n", crearConfig(&miConf));
     leerConfig(&miConf, "config.txt");
 
@@ -14,14 +17,20 @@ int main()
     printf ("premios: %u\n", miConf.premios);
 
     printf("\nBienvenido a Caravana Del Desierto!\n");
-    num=EjecutarMenu();
+    num=ejecutarMenu();
     while(num!=3)
     {
         if(num==1)
         {
             printf("\nQue empiece el juego!!\n");
-            //Funcion EmpezarJuego()
-            printf("\nPartida finalizada..          \n");
+            ret=comenzarJuego(&tab, &miConf);
+            eliminarTablero(&tab);
+            if(ret!=TODO_OK)
+            {
+
+                return ret;
+            }
+            printf("\nPartida finalizada..\n");
             system("pause");
         }
         if(num==2)
@@ -31,7 +40,7 @@ int main()
             system("pause");
         }
         system("cls");
-        num=EjecutarMenu();
+        num=ejecutarMenu();
     }
     printf("\nEl ranking ha quedado de la siguiente manera: \n");
     //Funcion MostrarRanking
@@ -40,7 +49,7 @@ int main()
 
     return 0;
 }
-int EjecutarMenu()
+int ejecutarMenu()
 {
     int num;
 
@@ -60,4 +69,17 @@ int EjecutarMenu()
         scanf("%d", &num);
     }
     return num;
+}
+int comenzarJuego(tLista *tab, const tConfig *config)
+{
+    int ret;
+
+    ret=crearTablero(tab, config);
+    if(ret!=TODO_OK)
+    {
+        return ret;
+    }
+
+    //Cooming soon: ret=aJugar();
+    return TODO_OK;
 }

@@ -10,21 +10,18 @@
 
 #define TAM_NOMBRE 11
 
-typedef enum
-{
-    VACIO,      // 0
-    INICIO,     // 1
-    SALIDA,     // 2
-    PREMIO,     // 3
-    VIDA_EXTRA, // 4
-    OASIS,      // 5
-    TORMENTA    // 6
-} tCategoria;
+#define VACIO 0
+#define INICIO 1
+#define SALIDA 2
+#define PREMIO 3
+#define VIDA_EXTRA 4
+#define OASIS 5
+#define TORMENTA 6
 
 typedef struct
 {
     int   numero;           // posicion 1..N
-    tCategoria categoria;   // lo que hay fijo en esa casilla
+    unsigned categoria;   // lo que hay fijo en esa casilla
     int   cantBandidos;     // cuantos bandidos estan parados ahi
     int   tieneJugador;     // 0 o 1
 } tCasillero;
@@ -44,7 +41,6 @@ typedef struct
     int id;
     int posicion;       // numero de casillero donde esta
 } tBandido;
-
 
 
 
