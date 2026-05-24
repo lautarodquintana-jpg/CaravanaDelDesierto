@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="TDAs/PilaDinamica.h" />
+		<Unit filename="TDAs/listaSimplementeEnlazada.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDAs/listaSimplementeEnlazada.h" />
 		<Unit filename="bandido.c">
 			<Option compilerVar="CC" />
 		</Unit>

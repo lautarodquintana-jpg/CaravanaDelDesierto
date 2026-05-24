@@ -5,7 +5,7 @@
 
 #define ERROR_ARCHIVO 9
 #define FUERA_RANGO 33
-#define TODO_OK 10
+#define TODO_OK 0
 
 #define MIN_POS 10
 #define MAX_POS 200

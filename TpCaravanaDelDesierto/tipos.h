@@ -4,6 +4,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+#include "config.h"
+
 #define TAM_NOMBRE 11
 
 typedef enum
@@ -15,14 +19,14 @@ typedef enum
     VIDA_EXTRA, // 4
     OASIS,      // 5
     TORMENTA    // 6
-} tTipo;
+} tCategoria;
 
 typedef struct
 {
-    int   numero;        // posicion 1..N
-    tTipo tipo;          // lo que hay fijo en esa casilla
-    int   cantBandidos;  // cuantos bandidos estan parados ahi
-    int   tieneJugador;  // 0 o 1
+    int   numero;           // posicion 1..N
+    tCategoria categoria;   // lo que hay fijo en esa casilla
+    int   cantBandidos;     // cuantos bandidos estan parados ahi
+    int   tieneJugador;     // 0 o 1
 } tCasillero;
 
 typedef struct
