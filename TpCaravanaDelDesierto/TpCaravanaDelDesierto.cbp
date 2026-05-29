@@ -31,13 +31,46 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="TpCaravanaDelDesierto.c">
+		<Unit filename="TDAs/PilaDinamica.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="TpCaravanaDelDesierto.h" />
+		<Unit filename="TDAs/PilaDinamica.h" />
+		<Unit filename="bandido.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bandido.h" />
+		<Unit filename="config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="config.h" />
+		<Unit filename="juego.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="juego.h" />
+		<Unit filename="jugador.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jugador.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menu.h" />
+		<Unit filename="partidas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="partidas.h" />
+		<Unit filename="tablero.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tablero.h" />
+		<Unit filename="tipos.h" />
+		<Unit filename="usuarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="usuarios.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
