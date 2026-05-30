@@ -2,12 +2,12 @@
 #include "TDAs/listaSimplementeEnlazada.h"
 #include "tablero.h"
 int ejecutarMenu();
-int comenzarJuego(tLista *tab, const tConfig *config);
+int comenzarJuego(tListaCD *tab, const tConfig *config);
 int main()
 {
     int num, ret;
     tConfig miConf;
-    tLista tab;
+    tListaCD tab;
     //printf ("%d\n", crearConfig(&miConf));
     leerConfig(&miConf, "config.txt");
 
@@ -70,7 +70,7 @@ int ejecutarMenu()
     }
     return num;
 }
-int comenzarJuego(tLista *tab, const tConfig *config)
+int comenzarJuego(tListaCD *tab, const tConfig *config)
 {
     int ret;
 

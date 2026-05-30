@@ -4,9 +4,9 @@ void crearListaCD(tListaCD *pl)
     *pl = NULL;
 }
 
-int reservarMemoriaParaNodoYAsignarCD(const void *elem, unsigned tam, tNodo **nuevo)
+int reservarMemoriaParaNodoYAsignarCD(const void *elem, unsigned tam, tNodoCD **nuevo)
 {
-    *nuevo = malloc(sizeof(tNodo));
+    *nuevo = malloc(sizeof(tNodoCD));
     if(!(*nuevo))
         return SIN_MEM;
 
@@ -24,7 +24,7 @@ int reservarMemoriaParaNodoYAsignarCD(const void *elem, unsigned tam, tNodo **nu
 
 void vaciarListaCD(tListaCD *pl)
 {
-    tNodo *primero, *elim;
+    tNodoCD *primero, *elim;
 
     if(*pl == NULL)
         return;
@@ -48,7 +48,7 @@ void vaciarListaCD(tListaCD *pl)
 
 int insertarAlComienzoDeListaCD(tListaCD *pl, const void *elem, unsigned tam)
 {
-    tNodo *nue, *primero;
+    tNodoCD *nue, *primero;
 
     if(reservarMemoriaParaNodoYAsignarCD(elem, tam, &nue) != TODO_OK)
         return SIN_MEM;
@@ -78,7 +78,7 @@ int insertarAlComienzoDeListaCD(tListaCD *pl, const void *elem, unsigned tam)
 
 int insertarAlFinalDeListaCD(tListaCD *pl, const void *elem, unsigned tam)
 {
-    tNodo *nue, *primero;
+    tNodoCD *nue, *primero;
 
     if(reservarMemoriaParaNodoYAsignarCD(elem, tam, &nue) != TODO_OK)
         return SIN_MEM;
@@ -106,7 +106,7 @@ int insertarAlFinalDeListaCD(tListaCD *pl, const void *elem, unsigned tam)
 
 void recorrerDeIzquierdaADerechaCD(const tListaCD *pl, void(*mostrar)(const void *elem))
 {
-    tNodo *actual, *primero;
+    tNodoCD *actual, *primero;
 
     if(*pl == NULL)
         return;
@@ -126,7 +126,7 @@ void recorrerDeIzquierdaADerechaCD(const tListaCD *pl, void(*mostrar)(const void
 
 void recorrerDeDerechaAIzquierdaCD(const tListaCD *pl, void(*mostrar)(const void *elem))
 {
-    tNodo *actual, *ultimo;
+    tNodoCD *actual, *ultimo;
 
     if(*pl == NULL)
         return;
@@ -143,7 +143,7 @@ void recorrerDeDerechaAIzquierdaCD(const tListaCD *pl, void(*mostrar)(const void
 }
 int verNElemCD(const tListaCD *pl, unsigned pos, void *elem, unsigned tam)
 {
-    tNodo   *actual, *primero;
+    tNodoCD   *actual, *primero;
     unsigned i = 0;
 
     if(*pl == NULL)
@@ -165,9 +165,9 @@ int verNElemCD(const tListaCD *pl, unsigned pos, void *elem, unsigned tam)
     memcpy(elem, actual->info, MINIMO(tam, actual->tamElem));
     return TODO_OK;
 }
-int actualizarNPosCD(tListaCD *pl, unsigned pos, const void *elem, void(*actualizar)(void *actualizado, const void *actualizador))
+int actualizarNPosCD(tListaCD *pl, const void *elem, unsigned pos, void(*actualizar)(void *actualizado, const void *actualizador))
 {
-    tNodo   *actual, *primero;
+    tNodoCD   *actual, *primero;
     unsigned i = 0;
 
     if(*pl == NULL)

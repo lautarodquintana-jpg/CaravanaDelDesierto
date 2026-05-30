@@ -12,22 +12,22 @@
 #define DUPLICADO 5
 #define POS_INVALIDA 6
 
-typedef struct sNodo
+typedef struct sNodoCD
 {
-    struct sNodo *ant;
+    struct sNodoCD *ant;
     void         *info;
     unsigned      tamElem;
-    struct sNodo *sig;
-} tNodo;
+    struct sNodoCD *sig;
+} tNodoCD;
 
-typedef tNodo* tListaCD;
+typedef tNodoCD* tListaCD;
 
 //Inicializacion y liberacion
 void crearListaCD(tListaCD *pl);
 void vaciarListaCD(tListaCD *pl);
 
 //Insercion
-int  reservarMemoriaParaNodoYAsignarCD(const void *elem, unsigned tam, tNodo **nuevo);
+int  reservarMemoriaParaNodoYAsignarCD(const void *elem, unsigned tam, tNodoCD **nuevo);
 int  insertarAlComienzoDeListaCD(tListaCD *pl, const void *elem, unsigned tam);
 int  insertarAlFinalDeListaCD(tListaCD *pl, const void *elem, unsigned tam);
 
@@ -38,6 +38,6 @@ void recorrerDeDerechaAIzquierdaCD(const tListaCD *pl, void(*mostrar)(const void
 
 //Otros
 int verNElemCD(const tListaCD *pl, unsigned pos, void *elem, unsigned tam);
-int actualizarNPosCD(tListaCD *pl, unsigned pos, const void *elem, void(*actualizar)(void *actualizado, const void *actualizador));
+int actualizarNPosCD(tListaCD *pl, const void *elem, unsigned pos, void(*actualizar)(void *actualizado, const void *actualizador));
 
 #endif // LISTACIRCULARDOBLEMENTEENLAZADA_H_INCLUDED
