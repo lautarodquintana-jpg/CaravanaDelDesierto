@@ -1,11 +1,10 @@
-
 #include "tablero.h"
 
-int crearTablero(tLista* tab, const tConfig* conf)
+int crearTablero(tListaCD* tab, const tConfig* conf)
 {
     int ret;
 
-    crearLista(tab);
+    crearListaCD(tab);
 
     // se insertan todas las posiciones en "blanco" (menos inicio y salida)
     ret = inicializarTablero(tab, conf->cantPos);
@@ -43,10 +42,10 @@ int crearTablero(tLista* tab, const tConfig* conf)
         return ret;
     }
 
-    mostrarLista(tab, mostrarCasillero);
+    recorrerDeIzquierdaADerechaCD(tab, mostrarCasillero);
     return TODO_OK;
 }
-int inicializarTablero(tLista* tab, unsigned cantPos)
+int inicializarTablero(tListaCD* tab, unsigned cantPos)
 {
     int i = 1;
     int ret;
@@ -57,7 +56,7 @@ int inicializarTablero(tLista* tab, unsigned cantPos)
     cas.numero = i;
     cas.tieneJugador = 1;
 
-    ret = insertarAlComienzo(tab, &cas, sizeof(tCasillero));
+    ret = insertarAlComienzoDeListaCD(tab, &cas, sizeof(tCasillero));
     if(ret != TODO_OK)
     {
         return ret;
@@ -70,7 +69,7 @@ int inicializarTablero(tLista* tab, unsigned cantPos)
     while(i < cantPos)
     {
         cas.numero = i;
-        ret = insertarAlFinal(tab, &cas, sizeof(tCasillero));
+        ret = insertarAlFinalDeListaCD(tab, &cas, sizeof(tCasillero));
         if(ret != TODO_OK)
         {
             return ret;
@@ -81,7 +80,7 @@ int inicializarTablero(tLista* tab, unsigned cantPos)
 
     cas.categoria = SALIDA;
     cas.numero++;
-    ret = insertarAlFinal(tab, &cas, sizeof(tCasillero));
+    ret = insertarAlFinalDeListaCD(tab, &cas, sizeof(tCasillero));
     if(ret != TODO_OK)
     {
         return ret;
@@ -91,7 +90,7 @@ int inicializarTablero(tLista* tab, unsigned cantPos)
 }
 
 
-int cargarCategoria(tLista* tab, unsigned cat, unsigned cant, unsigned tamTab)
+int cargarCategoria(tListaCD* tab, unsigned cat, unsigned cant, unsigned tamTab)
 {
     int ret;
     unsigned pos;
@@ -103,7 +102,7 @@ int cargarCategoria(tLista* tab, unsigned cat, unsigned cant, unsigned tamTab)
 //        rand() % 10 - 2 = (0 a 7) + 1 = 1 a 8
 //        0 a 9 --> 1 a 8
 
-        ret = verNElem(tab, pos, &casilleroLeido, sizeof(tCasillero));
+        ret = verNElemCD(tab, pos, &casilleroLeido, sizeof(tCasillero));
         if(ret != TODO_OK)
         {
             return ret;
@@ -111,7 +110,7 @@ int cargarCategoria(tLista* tab, unsigned cat, unsigned cant, unsigned tamTab)
 
         if(casilleroLeido.categoria == VACIO)
         {
-            ret = actualizarNPos(tab, &cat, pos, actualizarCat);
+            ret = actualizarNPosCD(tab, &cat, pos, actualizarCat);
             if(ret != TODO_OK)
             {
                 return ret;
@@ -123,7 +122,7 @@ int cargarCategoria(tLista* tab, unsigned cat, unsigned cant, unsigned tamTab)
 
     return TODO_OK;
 }
-int cargarBandidos(tLista* tab, unsigned cant, unsigned tamTab)
+int cargarBandidos(tListaCD* tab, unsigned cant, unsigned tamTab)
 {
     int ret;
     unsigned pos;
@@ -134,7 +133,7 @@ int cargarBandidos(tLista* tab, unsigned cant, unsigned tamTab)
 //        rand() % 10 - 2 = (0 a 7) + 1 = 1 a 8
 //        0 a 9 --> 1 a 8
 
-        ret = actualizarNPos(tab, NULL, pos, actualizarBandido);
+        ret = actualizarNPosCD(tab, NULL, pos, actualizarBandido);
         if(ret != TODO_OK)
         {
             return ret;
@@ -144,18 +143,18 @@ int cargarBandidos(tLista* tab, unsigned cant, unsigned tamTab)
 
     return TODO_OK;
 }
-void eliminarTablero(tLista* tab)
+void eliminarTablero(tListaCD* tab)
 {
-    vaciarLista(tab);
+    vaciarListaCD(tab);
 }
 
 int tirarDado()
 {
     return rand() % 6 + 1 ;
 }
-void mostrarCasillero(void *elem)
+void mostrarCasillero(const void *elem)
 {
-    tCasillero *cas=elem;
+    const tCasillero *cas=elem;
     char cat[]={ '.' , 'I' , 'S' , 'P' , 'V', 'O' , 'T'};
 
     printf("\n%-2d: Cat: %-1c, Bandidos: %-1d. Jugador: %d", cas->numero, cat[cas->categoria], cas->cantBandidos, cas->tieneJugador);
