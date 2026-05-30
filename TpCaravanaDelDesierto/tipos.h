@@ -42,7 +42,13 @@ typedef struct
     int posicion;       // numero de casillero donde esta
 } tBandido;
 
-
+typedef struct
+{
+    unsigned int idPartida;
+    unsigned int idJugador;
+    unsigned int puntajes;
+    unsigned int nroJugadas;
+}tResgistrosDeJugador;
 
 #endif // TIPOS_H_INCLUDED
 

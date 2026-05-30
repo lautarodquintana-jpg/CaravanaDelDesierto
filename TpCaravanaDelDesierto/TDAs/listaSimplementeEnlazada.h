@@ -1,6 +1,7 @@
 #ifndef LISTA_H_INCLUDED
 #define LISTA_H_INCLUDED
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -50,5 +51,8 @@ void ordenarLista(tLista* p, Cmp cmp);
 int actualizarNPos(tLista* p, const void* d, unsigned pos, Actualizar actualizar);
 
 int verNElem(tLista *p, unsigned pos, void *elem, unsigned tam);
+
+int cargarOrdenadoListaSinDupDeArchivo(tLista* p, unsigned cantBytes, Cmp cmp, Actualizar actualizar, const char* nomArch);
+
 
 #endif // LISTA_H_INCLUDED

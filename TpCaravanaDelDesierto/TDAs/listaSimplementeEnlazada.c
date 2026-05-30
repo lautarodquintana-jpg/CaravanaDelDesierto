@@ -323,7 +323,75 @@ int verNElem(tLista *p, unsigned pos, void *elem, unsigned tam)
     return POS_INVALIDA;
 }
 
+int cargarOrdenadoListaSinDupDeArchivo(tLista* p, unsigned cantBytes, Cmp cmp, Actualizar actualizar, const char* nomArch)
+{
+    void* reg;
+    tNodo* nue;
+    tLista* ini = p;
 
+    FILE* arch = fopen(nomArch,"rb");
 
+    if(!arch)
+        return ERR_ARCH;
+
+    reg = malloc(cantBytes);
+
+    if(!reg)
+    {
+        fclose(arch);
+        return SIN_MEM;
+    }
+
+    while(fread(reg, cantBytes, 1, arch) == 1)
+    {
+        p = ini;
+
+        while(*p && cmp((*p)->info, reg) < 0)
+        {
+            p = &((*p)->sig);
+        }
+
+        if(*p && cmp((*p)->info, reg) == 0)
+        {
+            if(actualizar)
+            {
+                actualizar((*p)->info, reg);
+            }
+        }
+
+        nue = (tNodo*)malloc(sizeof(tNodo));
+
+        if(!nue)
+        {
+            free(reg);
+            fclose(arch);
+            return SIN_MEM;
+        }
+
+        nue->info = malloc(cantBytes);
+
+        if(!nue->info)
+        {
+            free(nue);
+            free(reg);
+            fclose(arch);
+            return SIN_MEM;
+        }
+
+        memcpy(nue->info, reg, cantBytes);
+
+        nue->tamInfo = cantBytes;
+
+        nue->sig = *p;
+
+        *p = nue;
+    }
+
+    free(reg);
+
+    fclose(arch);
+
+    return TODO_OK;
+}
 
 
