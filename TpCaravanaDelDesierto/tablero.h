@@ -14,5 +14,7 @@ void eliminarTablero(tListaCD* tab);
 int tirarDado();
 void mostrarCasillero(const void *elem);
 
+int crearCaravanaTxt(tListaCD *tab);
+
 
 #endif // TABLERO_H_INCLUDED

@@ -7,6 +7,7 @@
 #define MINIMO(X,Y) ((X) <= (Y) ? (X) : (Y))
 #define TODO_OK 0
 #define SIN_MEM 1
+#define ERR_ARCH 2
 #define LISTA_VACIA 3
 #define ELEM_NO_ENCONTRADO 4
 #define DUPLICADO 5
@@ -39,5 +40,6 @@ void recorrerDeDerechaAIzquierdaCD(const tListaCD *pl, void(*mostrar)(const void
 //Otros
 int verNElemCD(const tListaCD *pl, unsigned pos, void *elem, unsigned tam);
 int actualizarNPosCD(tListaCD *pl, const void *elem, unsigned pos, void(*actualizar)(void *actualizado, const void *actualizador));
+
 
 #endif // LISTACIRCULARDOBLEMENTEENLAZADA_H_INCLUDED

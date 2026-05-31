@@ -8,6 +8,9 @@ int main()
     int num, ret;
     tConfig miConf;
     tListaCD tab;
+
+    srand(time(NULL));
+
     //printf ("%d\n", crearConfig(&miConf));
     leerConfig(&miConf, "config.txt");
 
