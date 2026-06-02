@@ -35,8 +35,9 @@ int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomAr
 
     cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tResgistrosDeJugador), cmpPuntaje, actualizarRegistroPuntajes, nomArchRegistros);
 
-    ordenarLista
+    ordenarLista(&lRanking, cmpPuntaje);
 
 
     return TODO_OK;
 }
+

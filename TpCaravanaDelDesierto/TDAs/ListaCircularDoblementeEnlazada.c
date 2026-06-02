@@ -157,7 +157,6 @@ int verNElemCD(const tListaCD *pl, unsigned pos, void *elem, unsigned tam)
         actual = actual->sig;
         i++;
 
-
         if(actual == primero)
             return POS_INVALIDA;
     }
