@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="TDAs/ColaDinamica.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDAs/ColaDinamica.h" />
+		<Unit filename="TDAs/ListaCircularDoblementeEnlazada.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDAs/ListaCircularDoblementeEnlazada.h" />
 		<Unit filename="TDAs/PilaDinamica.c">
 			<Option compilerVar="CC" />
 		</Unit>

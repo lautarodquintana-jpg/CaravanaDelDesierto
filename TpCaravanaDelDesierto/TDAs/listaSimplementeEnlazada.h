@@ -13,7 +13,6 @@
 #define DUPLICADO 5
 #define POS_INVALIDA 6
 
-
 #define MINIMO(X,Y) ((X) <= (Y) ? (X) : (Y))
 
 typedef struct sNodo
