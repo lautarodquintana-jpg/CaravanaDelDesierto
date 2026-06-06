@@ -22,8 +22,6 @@ typedef struct
 {
     int   numero;           // posicion 1..N
     unsigned categoria;   // lo que hay fijo en esa casilla
-    int   cantBandidos;     // cuantos bandidos estan parados ahi
-    int   tieneJugador;     // 0 o 1
 } tCasillero;
 
 typedef struct

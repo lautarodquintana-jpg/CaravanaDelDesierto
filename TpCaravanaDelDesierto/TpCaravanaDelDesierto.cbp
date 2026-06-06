@@ -47,6 +47,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="TDAs/listaSimplementeEnlazada.h" />
+		<Unit filename="TDAs/vector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDAs/vector.h" />
 		<Unit filename="bandido.c">
 			<Option compilerVar="CC" />
 		</Unit>
