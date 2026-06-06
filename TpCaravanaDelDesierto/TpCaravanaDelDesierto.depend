@@ -1,0 +1,88 @@
+# depslib dependency file v1.0
+1780705400 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
+	"bandido.h"
+
+1778437843 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\config.c
+	"config.h"
+
+1780181803 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\config.h
+	"tipos.h"
+
+1780707782 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"config.h"
+
+1777755524 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+
+1777755470 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
+
+1780706939 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\main.c
+	"config.h"
+	"TDAs/listaSimplementeEnlazada.h"
+	"tablero.h"
+
+1780181823 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+	<stdlib.h>
+	<string.h>
+
+1780706677 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+	"tipos.h"
+	"bandido.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+	"TDAs/vector.h"
+
+1780183147 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.h
+	<string.h>
+	<stdlib.h>
+
+1780707092 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+	"tablero.h"
+
+1780179389 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.c
+	"ColaDinamica.h"
+
+1780179389 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.h
+	<string.h>
+	<stdlib.h>
+
+1780181044 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
+	"ListaCircularDoblementeEnlazada.h"
+
+1780173513 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
+	"listaSimplementeEnlazada.h"
+
+1777320154 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
+	"PilaDinamica.h"
+
+1777320154 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1777755660 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+
+1780700933 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+	"partidas.h"
+
+1780693916 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\partidas.h
+	"tipos.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+	<stdlib.h>
+
+1780705400 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\bandido.h
+	"tipos.h"
+	"TDAs/vector.h"
+
+1780704837 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.c
+	"vector.h"
+
+1780703429 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.h
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdbool.h>
+	<string.h>
+
