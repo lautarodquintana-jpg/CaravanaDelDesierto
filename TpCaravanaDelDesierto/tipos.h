@@ -26,7 +26,6 @@ typedef struct
 
 typedef struct
 {
-    char nombre[TAM_NOMBRE];
     int  vidas;
     int  puntosAcum;
     int  posicion;      // numero de casillero donde esta (1..N)
@@ -44,6 +43,7 @@ typedef struct
     char sentido;//'F' o 'B'
     int desplazamiento;
 }tMovimiento;
+
 
 #endif // TIPOS_H_INCLUDED
 

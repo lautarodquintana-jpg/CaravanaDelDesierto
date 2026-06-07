@@ -28,15 +28,22 @@ void calcularDespBandido(tMovimiento *mov, int posJ, int posB, int tam_tablero)
     int distAvance   = (posJ - posB + tam_tablero) % tam_tablero;
     int distRetroceso = (posB - posJ + tam_tablero) % tam_tablero;
 
-    if(distAvance <= distRetroceso)
+    if(distAvance < distRetroceso)
     {
         mov->desplazamiento = (posB % tam_tablero) + 1;
         mov->sentido = 'F';
     }
     else
     {
-        mov->desplazamiento = ((posB - 2 + tam_tablero) % tam_tablero) + 1;
-        mov->sentido = 'B';
+        if(distAvance > distRetroceso)
+        {
+            mov->desplazamiento = ((posB - 2 + tam_tablero) % tam_tablero) + 1;
+            mov->sentido = 'B';
+        }
+        else
+        {
+            mov->desplazamiento=posB;
+        }
     }
 }
 
@@ -63,16 +70,17 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
     jugador->puntosAcum=0;
     system("cls");
 
+    printf("Turno del jugador\n");
     mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
     while(jugador->vidas>0 && catAct!=SALIDA)
     {
         if(catAnt!=TORMENTA)//Si no esta afectado por tormenta, le permito moverse
         {
             dado=tirarDado();
-            printf ("\nDado= %d\n", dado);
+            printf("\nTiras el dado y sale el valor: %d", dado);
             if(jugador->posicion-dado <= 0)
             {
-                printf("\nSolo puede dirigirse hacia adelante\n");
+                printf("\nSolo puedes dirigirte hacia adelante\n");
                 system("pause");//Le va a pedir una tecla cualquiera para continuar
                 sentido='F';
             }
@@ -113,7 +121,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
             if(MUERTE==ret)
             {
-                printf("\nMoriste maleta\n");
+                printf("\nTe ha interceptado un bandido y perdiste una vida, ahora te quedan: %d\n", jugador->vidas);
                 system("timeout /t 2 /nobreak > nul");
                 system ("cls");
                 mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
@@ -127,7 +135,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
         }
         else
         {
-            printf("\nPerdiste el turno debido a que estas bajo el efecto de la tormenta\n");
+            printf("\nHas perdido el turno debido a que estas bajo el efecto de una tormenta\n");
             system("timeout /t 2 /nobreak > nul");
             catAnt=VACIO;
             catAct=VACIO;
@@ -162,7 +170,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
             }
             if(MUERTE==ret)
             {
-                printf("\nMoriste maleta\n");
+                printf("\nTe ha interceptado un bandido y perdiste una vida, ahora te quedan: %d\n", jugador->vidas);
                 system("timeout /t 2 /nobreak > nul");
                 system ("cls");
                 mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
@@ -175,6 +183,8 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
     }
 
     printf("\n=== Registro de movimientos ===\n");
+    printf("\nF= Movimiento hacia adelante");
+    printf("\nB= Movimiento hacia atras\n");
     while (sacarDeCola(&colaRegMovimientos, &desp, sizeof(int)) == TODO_OK)
     {
         if (desp > 0)
@@ -215,26 +225,33 @@ int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAc
     switch(casAct.categoria)
     {
     case PREMIO:
+        printf("\nHas ganado un premio!\n");
         jugador->puntosAcum++;
+        printf("\nAhora posees: %d punto%c", jugador->puntosAcum, jugador->puntosAcum>1? 's': '\0');
         *catAct = PREMIO;
         ret=actualizarNPosCD(tab, NULL, casAct.numero - 1, ponerCatEnVacio);
         break;
     case VIDA_EXTRA:
+        printf("\nHas obtenido una vida extra!\n");
         jugador->vidas++;
+        printf("\nAhora posees: %d vida%c", jugador->vidas, jugador->vidas>1? 's': '\0');
         *catAct = VIDA_EXTRA;
         ret=actualizarNPosCD(tab, NULL, casAct.numero - 1, ponerCatEnVacio);
         break;
     case OASIS:
+        printf("\nHas caido en un oasis! Tienes proteccion por este turno y el siguiente ante 1 solo bandido");
         *catAct = OASIS;
         break;
     case TORMENTA:
+        printf("\nMala suerte. Has caido en una tormenta");
         *catAct = TORMENTA;
         break;
     case SALIDA:
+        printf("\nHas llegado a la salida! Ganaras si no te intercepta un bandido...");
         *catAct = SALIDA;
         break;
     }
-
+    system("timeout /t 3 /nobreak > nul");
     return ret;
 }
 int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt, unsigned catAct)
