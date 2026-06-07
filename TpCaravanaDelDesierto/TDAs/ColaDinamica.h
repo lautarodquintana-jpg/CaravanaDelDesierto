@@ -4,6 +4,10 @@
 #include <string.h>
 #include <stdlib.h>
 #define minimo(x,y)(x<=y? x:y)
+
+#define TODO_OK 0
+#define COLA_VACIA 2
+#define SIN_MEM 1
 typedef struct sNodoC
 {
     void *info;

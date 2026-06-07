@@ -145,7 +145,7 @@ int crearCaravanaTxt(tListaCD *tab, tVector *bandidos)
     int i = 1;
     int cantBandidosEnCas;
     tCasillero cas;
-    char cat[] = { '.' , 'I' , 'S' , 'P' , 'V', 'O' , 'T'};
+    char cat[] = { '.', 'I', 'S', 'P', 'V', 'O', 'T'};
 
     FILE *pf = fopen("caravana.txt", "wt");
     if(pf == NULL)
@@ -198,3 +198,46 @@ int crearCaravanaTxt(tListaCD *tab, tVector *bandidos)
     return TODO_OK;
 }
 
+void mostrarTablero(const tListaCD *tab, tVector *bandidos, int posJ, int tamTablero)
+{
+    int i = 0;
+    tCasillero cas;
+    char cat[] = { '.', 'I', 'S', 'P', 'V', 'O', 'T' };
+    int cantBandidos;
+    int hayJugador;
+    int hayCategoria;
+    int hayBandidos;
+
+    while (verNElemCD(tab, i, &cas, sizeof(tCasillero)) == TODO_OK)
+    {
+        cantBandidos = cantBandidoEnPos(bandidos, cas.numero);
+        hayJugador   = (cas.numero == posJ);
+        hayCategoria = (cas.categoria != VACIO);
+        hayBandidos  = (cantBandidos > 0);
+
+        printf("%02d: [", cas.numero);
+
+        if (!hayJugador && !hayBandidos)
+            printf("%c", cat[cas.categoria]);
+        else
+        {
+            if (hayCategoria)
+                printf("%c", cat[cas.categoria]);
+
+            if (hayJugador)
+                printf("%sJ", hayCategoria ? " " : "");
+
+            if (hayBandidos)
+            {
+                int hayAlgoAntes = hayCategoria || hayJugador;
+                if (cantBandidos > 1)
+                    printf("%s%dB", hayAlgoAntes ? " " : "", cantBandidos);
+                else
+                    printf("%sB", hayAlgoAntes ? " " : "");
+            }
+        }
+
+        printf("]\n");
+        i++;
+    }
+}

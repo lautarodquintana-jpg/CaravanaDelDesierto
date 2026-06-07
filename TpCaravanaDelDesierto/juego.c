@@ -23,22 +23,35 @@ void ponerCatEnVacio (void *actualizado, const void *actualizador)
     casActualizar->categoria=VACIO;
 }
 
-//void moverBandido (tListaCD *tab, tJugador* jugador, tBandido* bandido, int tam_tablero)
-//{
-//    int distAvance= ( jugador->posicion - bandido->posicion + tam_tablero) % tam_tablero;
-//    int distRetroceso= ( bandido->posicion - jugador->posicion + tam_tablero) % tam_tablero;
-//
-//    if (distAvance <= distRetroceso )
-//        bandido->posicion= (bandido->posicion + 1) % tam_tablero;
-//    else
-//        bandido->posicion= (bandido->posicion - 1 + tam_tablero) % tam_tablero;
-//}
+void calcularDespBandido(tMovimiento *mov, int posJ, int posB, int tam_tablero)
+{
+    int distAvance   = (posJ - posB + tam_tablero) % tam_tablero;
+    int distRetroceso = (posB - posJ + tam_tablero) % tam_tablero;
+
+    if(distAvance <= distRetroceso)
+    {
+        mov->desplazamiento = (posB % tam_tablero) + 1;
+        mov->sentido = 'F';
+    }
+    else
+    {
+        mov->desplazamiento = ((posB - 2 + tam_tablero) % tam_tablero) + 1;
+        mov->sentido = 'B';
+    }
+}
+
+void actualizarBandido (void *actualizado, const void *actualizador)
+{
+    memcpy(actualizado, actualizador, sizeof (tBandido));
+}
+
 int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config)
 {
     int dado, ret, desplazamientoEnCasillas, i;
-    unsigned catAnt=VACIO, catAct;
+    unsigned catAnt, catAct=INICIO;
     char sentido;//del movimiento
     tMovimiento mov;//mov es el de bandidos y jugadores, regMov es el que muestro al final
+    tBandido bandidoAux;
 
     tCola colaMovimientos, colaRegMovimientos;// Esto es para el registro de los movimientos
     crearCola(&colaMovimientos);
@@ -49,12 +62,14 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
     jugador->puntosAcum=0;
     system("cls");
 
-    while(jugador->vidas>0)
+    mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
+    while(jugador->vidas>0 && catAct!=SALIDA)
     {
         if(catAnt!=TORMENTA)//Si no esta afectado por tormenta, le permito moverse
         {
             dado=tirarDado();
-            if(jugador->posicion-dado<0)
+            printf ("\nDado= %d\n", dado);
+            if(jugador->posicion-dado <= 0)
             {
                 printf("\nSolo puede dirigirse hacia adelante\n");
                 system("pause");//Le va a pedir una tecla cualquiera para continuar
@@ -86,6 +101,8 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
                 return ret;
 
             moverJugador(dado, sentido, config->cantPos, jugador);
+            system ("cls");
+            mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
         }
         else
         {
@@ -106,25 +123,49 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
             ret=validarMuerte(jugador, bandidos, catAnt);
             if(ret==POS_INVALIDA)
                 return ret;
-            if(ret==MUERTE)
-            {
-                printf("\nMORISTE MALETA");
-            }
         }
 
+        if (MUERTE == ret)
+        {
+            printf ("\nMoriste maleta\n");
+        }
+        else
+        {
+            mov.tipo= 'B';
 
+            i=0;
+            while (i < vectorCantElementos(bandidos))
+            {
+                vectorObtenerElem(bandidos, i, &bandidoAux);
+                calcularDespBandido(&mov, jugador->posicion, bandidoAux.posicion, config->cantPos);
+                ret = ponerEnCola(&colaMovimientos, &mov, sizeof (tMovimiento));
+                if (ret != TODO_OK)
+                    return ret;
+                i++;
+            }
 
+            i=0;
+            while ( ret!=MUERTE && !colaVacia(&colaMovimientos) && i < vectorCantElementos(bandidos))
+            {
+                sacarDeCola(&colaMovimientos, &mov, sizeof (tMovimiento));
+                vectorObtenerElem(bandidos, i, &bandidoAux);
+                bandidoAux.posicion= mov.desplazamiento;
 
+                vectorActualizarNPos(bandidos, i, &bandidoAux, actualizarBandido);
+                system ("cls");
+                mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
+                system("timeout /t 2");
+                if (catAnt!= OASIS)
+                {
+                    ret= validarMuerte(jugador, bandidos, catAnt);
+                }
+                i++;
+            }
 
-
-
-
-
-
-
+        }
+        vaciarCola(&colaMovimientos);
         catAnt=catAct;
     }
-
 
     vaciarCola(&colaRegMovimientos);
     vaciarCola(&colaMovimientos);
@@ -135,14 +176,14 @@ char validarSentido()
     char sentido;
     printf("\nIngrese 'F' para dirigirse hacia ADELANTE, 'B' para dirigirse hacia ATRAS: ");
     fflush(stdin);
-    scanf("%c", &sentido);
+    scanf(" %c", &sentido);
     sentido=toupper(sentido);
     while(sentido!='F' && sentido !='B')
     {
         printf("\nOpcion ingresada invalida...");
         printf("\nIngrese 'F' para dirigirse hacia ADELANTE, 'B' para dirigirse hacia ATRAS: ");
         fflush(stdin);
-        scanf("%c", &sentido);
+        scanf(" %c", &sentido);
         sentido=toupper(sentido);
     }
     return sentido;
@@ -152,7 +193,7 @@ int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAc
     tCasillero casAct;
     int ret;
 
-    ret=verNElemCD(tab, jugador->posicion, &casAct, sizeof(tCasillero));
+    ret=verNElemCD(tab, jugador->posicion-1, &casAct, sizeof(tCasillero));
     if(ret!=TODO_OK)
         return ret;
     switch(casAct.categoria)
@@ -160,18 +201,21 @@ int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAc
     case PREMIO:
         jugador->puntosAcum++;
         *catAct = PREMIO;
-        ret=actualizarNPosCD(tab, NULL, casAct.numero, ponerCatEnVacio);
+        ret=actualizarNPosCD(tab, NULL, casAct.numero - 1, ponerCatEnVacio);
         break;
     case VIDA_EXTRA:
         jugador->vidas++;
         *catAct = VIDA_EXTRA;
-        ret=actualizarNPosCD(tab, NULL, casAct.numero, ponerCatEnVacio);
+        ret=actualizarNPosCD(tab, NULL, casAct.numero - 1, ponerCatEnVacio);
         break;
     case OASIS:
         *catAct = OASIS;
         break;
     case TORMENTA:
         *catAct = TORMENTA;
+        break;
+    case SALIDA:
+        *catAct = SALIDA;
         break;
     }
 
@@ -186,9 +230,8 @@ int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt)
 
     for(int i = 0; i < vectorCantElementos(bandidos); i++)
     {
-        ret=vectorObtenerElem(bandidos, i, &band);
-        if(ret!=TODO_OK)
-            return ret;
+        vectorObtenerElem(bandidos, i, &band);
+
         if(band.posicion == jugador->posicion)
         {
             cantBandidos++;
@@ -198,6 +241,7 @@ int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt)
     if((catAnt==OASIS && cantBandidos>=2) || (catAnt!=OASIS && cantBandidos>=1))//Si hay bandidos en la posicion
     {
         jugador->vidas--;
+        jugador->posicion = 1;
         ret=vectorEliminarDePos(bandidos, posBandidoVec);
         if(ret!=TODO_OK)
             return ret;

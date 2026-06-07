@@ -111,6 +111,7 @@ int ejecutarJuego(const tConfig *config)
         return ret;
 
     eliminarTablero(&tab);
+    vectorDestruir(&bandidos);
 
     return TODO_OK;
 }

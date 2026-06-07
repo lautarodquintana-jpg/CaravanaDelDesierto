@@ -3,5 +3,5 @@ Vidas:5
 Bandidos:3
 Vidas extras:2
 Oasis:4
-Tormentas:3
+Tormentas:0
 Premios:2
