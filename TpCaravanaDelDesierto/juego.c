@@ -48,7 +48,8 @@ void actualizarBandido (void *actualizado, const void *actualizador)
 int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config)
 {
     int dado, ret, desplazamientoEnCasillas, i;
-    unsigned catAnt, catAct=INICIO;
+    int desp;
+    unsigned catAnt=VACIO, catAct=INICIO;
     char sentido;//del movimiento
     tMovimiento mov;//mov es el de bandidos y jugadores, regMov es el que muestro al final
     tBandido bandidoAux;
@@ -100,71 +101,86 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
             if(ret!=TODO_OK)
                 return ret;
 
-            moverJugador(dado, sentido, config->cantPos, jugador);
-            system ("cls");
-            mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
-        }
-        else
-        {
-            printf("\nPerdiste el turno debido a que estas bajo el efecto de la tormenta: \n");
-            catAnt=VACIO;
-            desplazamientoEnCasillas=0;
-        }
+            animarMovimiento(tab, bandidos, jugador, dado, sentido, config->cantPos);
 
+            ret=aplicarEfectosDelCasillero(tab, jugador, &catAct);
+            if(ret!=TODO_OK)
+                return ret;
 
-        //Despues de hacer el movimiento, aplicas estado
-        ret=aplicarEfectosDelCasillero(tab, jugador, &catAct);
-        if(ret!=TODO_OK)
-            return ret;
-
-        //Chequeamos si hay bandidos en la posicion del jugador, teniendo en cuenta efectos
-        if(catAct!=OASIS)
-        {
-            ret=validarMuerte(jugador, bandidos, catAnt);
+            ret=validarMuerte(jugador, bandidos, catAnt, catAct);
             if(ret==POS_INVALIDA)
                 return ret;
-        }
 
-        if (MUERTE == ret)
-        {
-            printf ("\nMoriste maleta\n");
+            if(MUERTE==ret)
+            {
+                printf("\nMoriste maleta\n");
+                system("timeout /t 2 /nobreak > nul");
+                system ("cls");
+                mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
+                catAct=INICIO;
+                catAnt=VACIO;
+            }
+            else
+            {
+                catAnt=catAct;
+            }
         }
         else
         {
-            mov.tipo= 'B';
+            printf("\nPerdiste el turno debido a que estas bajo el efecto de la tormenta\n");
+            system("timeout /t 2 /nobreak > nul");
+            catAnt=VACIO;
+            catAct=VACIO;
+        }
 
+        if(ret!=MUERTE)
+        {
+            mov.tipo='B';
             i=0;
-            while (i < vectorCantElementos(bandidos))
+            while(i < vectorCantElementos(bandidos))
             {
                 vectorObtenerElem(bandidos, i, &bandidoAux);
                 calcularDespBandido(&mov, jugador->posicion, bandidoAux.posicion, config->cantPos);
-                ret = ponerEnCola(&colaMovimientos, &mov, sizeof (tMovimiento));
-                if (ret != TODO_OK)
+                ret=ponerEnCola(&colaMovimientos, &mov, sizeof(tMovimiento));
+                if(ret!=TODO_OK)
                     return ret;
                 i++;
             }
-
             i=0;
-            while ( ret!=MUERTE && !colaVacia(&colaMovimientos) && i < vectorCantElementos(bandidos))
+            while(ret!=MUERTE && !colaVacia(&colaMovimientos) && i < vectorCantElementos(bandidos))
             {
-                sacarDeCola(&colaMovimientos, &mov, sizeof (tMovimiento));
+                sacarDeCola(&colaMovimientos, &mov, sizeof(tMovimiento));
                 vectorObtenerElem(bandidos, i, &bandidoAux);
-                bandidoAux.posicion= mov.desplazamiento;
-
+                bandidoAux.posicion=mov.desplazamiento;
                 vectorActualizarNPos(bandidos, i, &bandidoAux, actualizarBandido);
-                system ("cls");
+                system("cls");
                 mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
-                system("timeout /t 2");
-                if (catAnt!= OASIS)
-                {
-                    ret= validarMuerte(jugador, bandidos, catAnt);
-                }
+                printf("\nMovimiento de bandidos...\n");
+                system("timeout /t 2 /nobreak > nul");
+                ret=validarMuerte(jugador, bandidos, catAnt, catAct);
                 i++;
             }
-
+            if(MUERTE==ret)
+            {
+                printf("\nMoriste maleta\n");
+                system("timeout /t 2 /nobreak > nul");
+                system ("cls");
+                mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
+                catAct=INICIO;
+                catAnt=VACIO;
+            }
         }
         vaciarCola(&colaMovimientos);
-        catAnt=catAct;
+
+    }
+
+    printf("\n=== Registro de movimientos ===\n");
+    while (sacarDeCola(&colaRegMovimientos, &desp, sizeof(int)) == TODO_OK)
+    {
+        if (desp > 0)
+            printf("F%d\n", desp);
+        else
+            printf("B%d\n", -desp);
     }
 
     vaciarCola(&colaRegMovimientos);
@@ -221,7 +237,7 @@ int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAc
 
     return ret;
 }
-int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt)
+int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt, unsigned catAct)
 {
     int cantBandidos = 0;
     int posBandidoVec;
@@ -238,13 +254,14 @@ int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt)
             posBandidoVec=i;
         }
     }
-    if((catAnt==OASIS && cantBandidos>=2) || (catAnt!=OASIS && cantBandidos>=1))//Si hay bandidos en la posicion
+    if(((catAnt==OASIS && cantBandidos>=2) || (catAnt!=OASIS && cantBandidos>=1)) && ((catAct==OASIS && cantBandidos>=2) || (catAct!=OASIS && cantBandidos>=1)))//Si hay bandidos en la posicion
     {
         jugador->vidas--;
         jugador->posicion = 1;
         ret=vectorEliminarDePos(bandidos, posBandidoVec);
         if(ret!=TODO_OK)
             return ret;
+
         return MUERTE;
     }
 

@@ -17,7 +17,6 @@ void actualizarBandido (void *actualizado, const void *actualizador);
 int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config);
 char validarSentido();
 int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAct);
-int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt);
-
+int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt, unsigned catAct);
 
 #endif // JUEGO_H_INCLUDED

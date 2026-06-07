@@ -124,14 +124,6 @@ int tirarDado()
     return rand() % 6 + 1 ;
 }
 
-//void mostrarCasillero(const void *elem, tBandido *bandidos, int posJugador)
-//{
-//    const tCasillero *cas = elem;
-//    char cat[] = { '.' , 'I' , 'S' , 'P' , 'V', 'O' , 'T'};
-//
-//    printf("\n%-2d: Cat: %-1c, Bandidos: %-1d. Jugador: 0", cas->numero, cat[cas->categoria]);
-//}
-
 void actualizarCat(void *actualizado, const void *actualizador)
 {
     tCasillero *elemActualizado=actualizado;
@@ -239,5 +231,29 @@ void mostrarTablero(const tListaCD *tab, tVector *bandidos, int posJ, int tamTab
 
         printf("]\n");
         i++;
+    }
+}
+
+void animarMovimiento(tListaCD *tab, tVector *bandidos, tJugador *jugador, unsigned desplazamiento, char sentido, int tam_tablero)
+{
+    int paso;
+    int dir = (sentido == 'B') ? -1 : 1;
+    int nuevaPos;
+
+    for (paso = 0; paso < desplazamiento; paso++)
+    {
+        nuevaPos = jugador->posicion + dir;
+
+        // rebote en el extremo superior
+        if (nuevaPos > tam_tablero)
+        {
+            dir = -1;
+            nuevaPos = tam_tablero - 1;
+        }
+
+        jugador->posicion = nuevaPos;
+        system("cls");
+        mostrarTablero(tab, bandidos, jugador->posicion, tam_tablero);
+        system("timeout /t 1 /nobreak > nul");  // 1 segundo entre pasos, sin mostrar mensaje
     }
 }

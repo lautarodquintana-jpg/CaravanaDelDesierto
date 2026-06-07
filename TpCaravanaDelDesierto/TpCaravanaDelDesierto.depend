@@ -222,7 +222,7 @@
 	<stdlib.h>
 	<string.h>
 
-1780802359 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+1780852996 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
 	"tipos.h"
 	"bandido.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
@@ -232,7 +232,7 @@
 	<string.h>
 	<stdlib.h>
 
-1780809994 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.h
+1780851726 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.h
 	"tipos.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/ColaDinamica.h"
@@ -246,7 +246,7 @@
 
 1780794415 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
 
-1780808216 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+1780852958 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
 	"tablero.h"
 
 1780794414 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.c
@@ -279,7 +279,7 @@
 
 1780794388 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
 
-1780810802 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+1780852714 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
 	"juego.h"
 	"tipos.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
