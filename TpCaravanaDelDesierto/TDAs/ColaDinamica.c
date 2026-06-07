@@ -6,7 +6,7 @@ void crearCola(tCola *c)
 }
 void vaciarCola(tCola *c)
 {//Voy vaciando del primero a ultimo
-    tNodo *sig;
+    tNodoC *sig;
 
     while(c->pri)
     {
@@ -19,17 +19,17 @@ void vaciarCola(tCola *c)
 }
 int ponerEnCola(tCola *c, const void *elem, unsigned tamElem)
 {
-    tNodo *nue;
-    nue=malloc(sizeof(tNodo));
+    tNodoC *nue;
+    nue=malloc(sizeof(tNodoC));
     if(!nue)
     {
-        return 0;
+        return SIN_MEM;
     }
     nue->info=malloc(tamElem);
     if(!nue->info)
     {
         free(nue);
-        return 0;
+        return SIN_MEM;
     }
 
     memcpy(nue->info, elem, tamElem);
@@ -42,7 +42,7 @@ int ponerEnCola(tCola *c, const void *elem, unsigned tamElem)
         c->ult->sig=nue;
     }
     c->ult=nue;
-    return 1;
+    return TODO_OK;
 }
 int verPrimero(const tCola *c, void *elem, unsigned tamElem)
 {
@@ -53,9 +53,9 @@ int verPrimero(const tCola *c, void *elem, unsigned tamElem)
 }
 int sacarDeCola(tCola *c, void *elem, unsigned tamElem)
 {//Para sacar de cola no debo perder el siguiente antes de liberar el nodo, chequear que la pila no esté vacia, que si el siguiente es nulo, poner en nulo a ult tambien
-    tNodo *sig;
+    tNodoC *sig;
     if(c->pri==NULL)
-        return 0;
+        return COLA_VACIA;
 
     memcpy(elem, c->pri->info, minimo(c->pri->tamElem, tamElem));
     sig=c->pri->sig;
@@ -65,7 +65,7 @@ int sacarDeCola(tCola *c, void *elem, unsigned tamElem)
     if(c->pri==NULL)
         c->ult=NULL;
 
-    return 1;
+    return TODO_OK;
 
 }
 int colaVacia(const tCola *c)

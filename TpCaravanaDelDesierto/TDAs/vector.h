@@ -19,6 +19,7 @@
 #define DUPLICADO 5
 #define POS_INVALIDA 6
 
+
 typedef struct
 {
    void* vec;
@@ -29,17 +30,17 @@ typedef struct
 
 typedef int (*Cmp)(const void* e1, const void* e2);
 typedef void (*Accion)(void* e);
-
+typedef void (*Actualizar)(void* actualizado, const void* actualizador);
 
 int vectorCrear(tVector* v, size_t tamE);
 void vectorRecorrer(tVector* v, Accion acc);
 int vectorInsertarAlFinal(tVector* v, const void* elem);
 int vectorOrdInsertar(tVector* v, const void* elem, Cmp cmp);
-bool vectorEliminarDePos(tVector* v, int pos);
+int vectorEliminarDePos(tVector* v, int pos);
 int vectorOrdBuscar(const tVector* v, void* elem, Cmp cmp);
 int vectorOrdenar(tVector* v, Cmp cmp);
 void vectorDestruir(tVector* v);
 int vectorObtenerElem(tVector* v, int pos, void* elem);
-
-
+int vectorActualizarNPos(tVector* v, int pos, const void* elem, void(*actualizar)(void *actualizado, const void *actualizador));
+int vectorCantElementos(tVector * v);
 #endif // VECTOR_H_INCLUDED

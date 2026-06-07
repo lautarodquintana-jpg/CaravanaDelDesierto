@@ -120,11 +120,11 @@ int vectorOrdInsertar(tVector* v, const void* elem, Cmp cmp)
     return TODO_OK;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-bool vectorEliminarDePos(tVector* v, int pos)
+int vectorEliminarDePos(tVector* v, int pos)
 {
     if(pos < 0 || pos >= v->ce)
     {
-        return false;
+        return POS_INVALIDA;
     }
 
     void* ult = v->vec + (v->ce - 1) * v->tamElem;
@@ -141,7 +141,7 @@ bool vectorEliminarDePos(tVector* v, int pos)
         redimensionarVector(v, FACTOR_DECR);
     }
 
-    return true;
+    return TODO_OK;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 bool vectorEliminarElem(tVector* v, const void* elem, Cmp cmp)
@@ -249,4 +249,18 @@ int vectorObtenerElem(tVector* v, int pos, void* elem)
 
     memcpy(elem, v->vec + pos * v->tamElem, v->tamElem);
     return TODO_OK;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+int vectorActualizarNPos(tVector* v, int pos, const void* elem, Actualizar actualizar)
+{
+    if(pos < 0 || pos >= v->ce)
+        return POS_INVALIDA;
+
+    actualizar(v->vec + pos * v->tamElem, elem);
+    return TODO_OK;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+int vectorCantElementos(tVector * v)
+{
+    return v->ce;
 }

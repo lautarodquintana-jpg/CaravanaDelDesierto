@@ -124,14 +124,6 @@ int tirarDado()
     return rand() % 6 + 1 ;
 }
 
-//void mostrarCasillero(const void *elem, tBandido *bandidos, int posJugador)
-//{
-//    const tCasillero *cas = elem;
-//    char cat[] = { '.' , 'I' , 'S' , 'P' , 'V', 'O' , 'T'};
-//
-//    printf("\n%-2d: Cat: %-1c, Bandidos: %-1d. Jugador: 0", cas->numero, cat[cas->categoria]);
-//}
-
 void actualizarCat(void *actualizado, const void *actualizador)
 {
     tCasillero *elemActualizado=actualizado;
@@ -145,7 +137,7 @@ int crearCaravanaTxt(tListaCD *tab, tVector *bandidos)
     int i = 1;
     int cantBandidosEnCas;
     tCasillero cas;
-    char cat[] = { '.' , 'I' , 'S' , 'P' , 'V', 'O' , 'T'};
+    char cat[] = { '.', 'I', 'S', 'P', 'V', 'O', 'T'};
 
     FILE *pf = fopen("caravana.txt", "wt");
     if(pf == NULL)
@@ -198,3 +190,70 @@ int crearCaravanaTxt(tListaCD *tab, tVector *bandidos)
     return TODO_OK;
 }
 
+void mostrarTablero(const tListaCD *tab, tVector *bandidos, int posJ, int tamTablero)
+{
+    int i = 0;
+    tCasillero cas;
+    char cat[] = { '.', 'I', 'S', 'P', 'V', 'O', 'T' };
+    int cantBandidos;
+    int hayJugador;
+    int hayCategoria;
+    int hayBandidos;
+
+    while (verNElemCD(tab, i, &cas, sizeof(tCasillero)) == TODO_OK)
+    {
+        cantBandidos = cantBandidoEnPos(bandidos, cas.numero);
+        hayJugador   = (cas.numero == posJ);
+        hayCategoria = (cas.categoria != VACIO);
+        hayBandidos  = (cantBandidos > 0);
+
+        printf("%02d: [", cas.numero);
+
+        if (!hayJugador && !hayBandidos)
+            printf("%c", cat[cas.categoria]);
+        else
+        {
+            if (hayCategoria)
+                printf("%c", cat[cas.categoria]);
+
+            if (hayJugador)
+                printf("%sJ", hayCategoria ? " " : "");
+
+            if (hayBandidos)
+            {
+                int hayAlgoAntes = hayCategoria || hayJugador;
+                if (cantBandidos > 1)
+                    printf("%s%dB", hayAlgoAntes ? " " : "", cantBandidos);
+                else
+                    printf("%sB", hayAlgoAntes ? " " : "");
+            }
+        }
+
+        printf("]\n");
+        i++;
+    }
+}
+
+void animarMovimiento(tListaCD *tab, tVector *bandidos, tJugador *jugador, unsigned desplazamiento, char sentido, int tam_tablero)
+{
+    int paso;
+    int dir = (sentido == 'B') ? -1 : 1;
+    int nuevaPos;
+
+    for (paso = 0; paso < desplazamiento; paso++)
+    {
+        nuevaPos = jugador->posicion + dir;
+
+        // rebote en el extremo superior
+        if (nuevaPos > tam_tablero)
+        {
+            dir = -1;
+            nuevaPos = tam_tablero - 1;
+        }
+
+        jugador->posicion = nuevaPos;
+        system("cls");
+        mostrarTablero(tab, bandidos, jugador->posicion, tam_tablero);
+        system("timeout /t 1 /nobreak > nul");  // 1 segundo entre pasos, sin mostrar mensaje
+    }
+}

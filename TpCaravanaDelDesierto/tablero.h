@@ -12,7 +12,8 @@ void actualizarCat(void *actualizado, const void *actualizador);
 int crearTablero(tListaCD* tab, const tConfig* conf);
 void eliminarTablero(tListaCD* tab);
 int tirarDado();
-void mostrarCasillero(const void *elem);
+void mostrarTablero (const tListaCD *tab,tVector *bandidos, int posJ, int tamTablero);
+void animarMovimiento(tListaCD *tab, tVector *bandidos, tJugador *jugador, unsigned desplazamiento, char sentido, int tam_tablero);
 
 int crearCaravanaTxt(tListaCD *tab, tVector *bandidos);
 
