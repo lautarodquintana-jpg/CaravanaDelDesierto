@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TODO_OK 1
-#define ERROR_MEMORIA 0
+#define TODO_OK 0
+#define ERROR_MEMORIA 1
 #define DUPLICADO 2
 #define ERROR_ARCHIVO -2
 #define MAYOR(a,b)(a>=b?a:b)

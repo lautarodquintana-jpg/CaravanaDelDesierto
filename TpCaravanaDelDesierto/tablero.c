@@ -199,6 +199,7 @@ void mostrarTablero(const tListaCD *tab, tVector *bandidos, int posJ, int tamTab
     int hayJugador;
     int hayCategoria;
     int hayBandidos;
+    int hayAlgoAntes;
 
     while (verNElemCD(tab, i, &cas, sizeof(tCasillero)) == TODO_OK)
     {
@@ -221,7 +222,7 @@ void mostrarTablero(const tListaCD *tab, tVector *bandidos, int posJ, int tamTab
 
             if (hayBandidos)
             {
-                int hayAlgoAntes = hayCategoria || hayJugador;
+                hayAlgoAntes = hayCategoria || hayJugador;
                 if (cantBandidos > 1)
                     printf("%s%dB", hayAlgoAntes ? " " : "", cantBandidos);
                 else

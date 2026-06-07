@@ -26,7 +26,6 @@ typedef struct
 
 typedef struct
 {
-    char nombre[TAM_NOMBRE];
     int  vidas;
     int  puntosAcum;
     int  posicion;      // numero de casillero donde esta (1..N)
