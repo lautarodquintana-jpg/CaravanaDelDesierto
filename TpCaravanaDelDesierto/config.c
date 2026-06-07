@@ -99,11 +99,9 @@ int leerConfig (tConfig* conf, const char* nomArch)
     aux= strchr (buffer, ':');
     sscanf(aux+1,"%d", &conf->premios);
 
-<<<<<<< HEAD
-=======
+
     fclose (pf);
     return TODO_OK;
->>>>>>> test
 
     return TODO_OK;
 }

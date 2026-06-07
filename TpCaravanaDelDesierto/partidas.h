@@ -1,7 +1,7 @@
 #ifndef PARTIDAS_H_INCLUDED
 #define PARTIDAS_H_INCLUDED
 
-<<<<<<< HEAD
+
 #include "tipos.h"
 
 #include "TDAs/listaSimplementeEnlazada.h"
@@ -23,7 +23,6 @@ void imprimirRanking(const void* elem);
 int grabarRegistrosDePartida(tRegistroDeJugador* partidaAct, const char* archRegistros);
 int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomArchRegistros);
 
-=======
->>>>>>> test
+
 #endif // PARTIDAS_H_INCLUDED
 

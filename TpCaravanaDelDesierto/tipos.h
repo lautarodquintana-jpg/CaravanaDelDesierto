@@ -40,7 +40,6 @@ typedef struct
 
 typedef struct
 {
-<<<<<<< HEAD
     unsigned int idPartida;
     unsigned int idJugador;
     unsigned int puntaje;
@@ -54,12 +53,14 @@ typedef struct
     unsigned int puntajes;
     unsigned int nroJugadas;
 }tResgistrodeUsuario;
-=======
+
+typedef struct
+{
     char tipo;//'J' O 'B'
     char sentido;//'F' o 'B'
     int desplazamiento;
 }tMovimiento;
->>>>>>> test
+
 
 #endif // TIPOS_H_INCLUDED
 
