@@ -22,8 +22,6 @@ typedef struct
 {
     int   numero;           // posicion 1..N
     unsigned categoria;   // lo que hay fijo en esa casilla
-    int   cantBandidos;     // cuantos bandidos estan parados ahi
-    int   tieneJugador;     // 0 o 1
 } tCasillero;
 
 typedef struct
@@ -31,8 +29,6 @@ typedef struct
     char nombre[TAM_NOMBRE];
     int  vidas;
     int  puntosAcum;
-    int  protegido;     // efecto oasis activo
-    int  pierdeTurno;   // cayo en tormenta
     int  posicion;      // numero de casillero donde esta (1..N)
 } tJugador;
 
@@ -44,6 +40,7 @@ typedef struct
 
 typedef struct
 {
+<<<<<<< HEAD
     unsigned int idPartida;
     unsigned int idJugador;
     unsigned int puntaje;
@@ -57,6 +54,12 @@ typedef struct
     unsigned int puntajes;
     unsigned int nroJugadas;
 }tResgistrodeUsuario;
+=======
+    char tipo;//'J' O 'B'
+    char sentido;//'F' o 'B'
+    int desplazamiento;
+}tMovimiento;
+>>>>>>> test
 
 #endif // TIPOS_H_INCLUDED
 

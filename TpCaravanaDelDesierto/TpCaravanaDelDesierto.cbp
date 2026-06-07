@@ -5,6 +5,7 @@
 		<Option title="TpCaravanaDelDesierto" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="TDAs/;CaravanaDelDesierto/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/TpCaravanaDelDesierto" prefix_auto="1" extension_auto="1" />
@@ -33,52 +34,102 @@
 		</Compiler>
 		<Unit filename="TDAs/ColaDinamica.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="TDAs/" />
 		</Unit>
-		<Unit filename="TDAs/ColaDinamica.h" />
+		<Unit filename="TDAs/ColaDinamica.h">
+			<Option virtualFolder="TDAs/" />
+		</Unit>
 		<Unit filename="TDAs/ListaCircularDoblementeEnlazada.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="TDAs/" />
 		</Unit>
-		<Unit filename="TDAs/ListaCircularDoblementeEnlazada.h" />
+		<Unit filename="TDAs/ListaCircularDoblementeEnlazada.h">
+			<Option virtualFolder="TDAs/" />
+		</Unit>
 		<Unit filename="TDAs/PilaDinamica.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="TDAs/" />
 		</Unit>
-		<Unit filename="TDAs/PilaDinamica.h" />
+		<Unit filename="TDAs/PilaDinamica.h">
+			<Option virtualFolder="TDAs/" />
+		</Unit>
+		<Unit filename="TDAs/arbol.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="TDAs/" />
+		</Unit>
+		<Unit filename="TDAs/arbol.h">
+			<Option virtualFolder="TDAs/" />
+		</Unit>
 		<Unit filename="TDAs/listaSimplementeEnlazada.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="TDAs/" />
 		</Unit>
-		<Unit filename="TDAs/listaSimplementeEnlazada.h" />
+		<Unit filename="TDAs/listaSimplementeEnlazada.h">
+			<Option virtualFolder="TDAs/" />
+		</Unit>
+		<Unit filename="TDAs/vector.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="TDAs/" />
+		</Unit>
+		<Unit filename="TDAs/vector.h">
+			<Option virtualFolder="TDAs/" />
+		</Unit>
 		<Unit filename="bandido.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="bandido.h" />
+		<Unit filename="bandido.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Unit filename="config.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="config.h" />
+		<Unit filename="config.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Unit filename="juego.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="juego.h" />
+		<Unit filename="juego.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Unit filename="jugador.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="jugador.h" />
+		<Unit filename="jugador.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
 		<Unit filename="partidas.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="partidas.h" />
+		<Unit filename="partidas.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Unit filename="tablero.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="tablero.h" />
-		<Unit filename="tipos.h" />
+		<Unit filename="tablero.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
+		<Unit filename="tipos.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Unit filename="usuarios.c">
 			<Option compilerVar="CC" />
+			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="usuarios.h" />
+		<Unit filename="usuarios.h">
+			<Option virtualFolder="CaravanaDelDesierto/" />
+		</Unit>
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

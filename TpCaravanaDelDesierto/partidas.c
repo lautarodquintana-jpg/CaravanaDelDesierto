@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "partidas.h"
 
 
@@ -65,4 +66,6 @@ int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomAr
     return TODO_OK;
 }
 
+=======
+>>>>>>> test
 
