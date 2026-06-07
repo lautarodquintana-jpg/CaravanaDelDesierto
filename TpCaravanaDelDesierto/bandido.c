@@ -25,7 +25,7 @@ int cantBandidoEnPos(tVector *bandidos, int posTablero)
     int contador = 0;
     tBandido band;
 
-    for(int i = 0; i < bandidos->ce; i++)
+    for(int i = 0; i < vectorCantElementos(bandidos); i++)
     {
         vectorObtenerElem(bandidos, i, &band);
         if(band.posicion == posTablero)

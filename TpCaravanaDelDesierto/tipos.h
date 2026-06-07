@@ -29,8 +29,6 @@ typedef struct
     char nombre[TAM_NOMBRE];
     int  vidas;
     int  puntosAcum;
-    int  protegido;     // efecto oasis activo
-    int  pierdeTurno;   // cayo en tormenta
     int  posicion;      // numero de casillero donde esta (1..N)
 } tJugador;
 
@@ -40,7 +38,12 @@ typedef struct
     int posicion;       // numero de casillero donde esta
 } tBandido;
 
-
+typedef struct
+{
+    char tipo;//'J' O 'B'
+    char sentido;//'F' o 'B'
+    int desplazamiento;
+}tMovimiento;
 
 #endif // TIPOS_H_INCLUDED
 

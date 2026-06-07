@@ -4,16 +4,16 @@
 #include <string.h>
 #include <stdlib.h>
 #define minimo(x,y)(x<=y? x:y)
-typedef struct sNodo
+typedef struct sNodoC
 {
     void *info;
     unsigned tamElem;
-    struct sNodo *sig;
-}tNodo;
+    struct sNodoC *sig;
+}tNodoC;
 typedef struct
 {
-    tNodo *pri;
-    tNodo *ult;
+    tNodoC *pri;
+    tNodoC *ult;
 }tCola;
 
 void crearCola(tCola *c);

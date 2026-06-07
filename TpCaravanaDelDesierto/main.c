@@ -1,6 +1,7 @@
 #include "config.h"
 #include "TDAs/listaSimplementeEnlazada.h"
 #include "tablero.h"
+#include "juego.h"
 int ejecutarMenu();
 int ejecutarJuego(const tConfig *config);
 int main()
@@ -79,7 +80,7 @@ int ejecutarJuego(const tConfig *config)
 
     tListaCD tab;
     tVector bandidos;
-
+    tJugador jugador;
     ret = crearTablero(&tab, config);
     if(ret != TODO_OK)
     {
@@ -105,7 +106,9 @@ int ejecutarJuego(const tConfig *config)
     }
 
 
-    //Cooming soon: ret = aJugar();
+    ret=aJugar(&tab, &jugador, &bandidos, config);
+    if(ret!=TODO_OK)
+        return ret;
 
     eliminarTablero(&tab);
 
