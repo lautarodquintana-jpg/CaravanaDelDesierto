@@ -1,9 +1,32 @@
 #include "partidas.h"
 
-<<<<<<< HEAD
-int grabarRegistrosDePartida(tResgistrosDeJugador* partidaAct, const char* archRegistros)
+
+int cmpPuntaje(const void* e1, const void* e2)
 {
-    tResgistrosDeJugador registroAnterior;
+    const tRegistroDeJugador* x = (const tRegistroDeJugador*)e1;
+    const tRegistroDeJugador* y = (const tRegistroDeJugador*)e2;
+
+    return x->puntaje - y->puntaje;
+}
+void actualizarRegistroPuntaje(void* actualizado, const void* actualizador)
+{
+    tRegistroDeJugador* x = (tRegistroDeJugador*)actualizado;
+    const tRegistroDeJugador* y =(const tRegistroDeJugador*)actualizador;
+    x->puntaje += y->puntaje;
+}
+
+int cmpIdJugador(const void* e1, const void* e2)
+{
+    const tRegistroDeJugador* x = (const tRegistroDeJugador*)e1;
+    const tRegistroDeJugador* y = (const tRegistroDeJugador*)e2;
+
+    return x->idJugador - y->idJugador;
+}
+
+
+int grabarRegistrosDePartida(tRegistroDeJugador* partidaAct, const char* archRegistros)
+{
+    tRegistroDeJugador registroAnterior;
 
     FILE* arch = fopen(archRegistros, "r+b");
 
@@ -18,14 +41,14 @@ int grabarRegistrosDePartida(tResgistrosDeJugador* partidaAct, const char* archR
     }
     else
     {
-        fseek(arch, -sizeof(tResgistrosDeJugador), SEEK_END);
-        fread(&registroAnterior, sizeof(tResgistrosDeJugador), 1, arch);
+        fseek(arch, - (long long)sizeof(tRegistroDeJugador), SEEK_END);
+        fread(&registroAnterior, sizeof(tRegistroDeJugador), 1, arch);
 
         partidaAct->idPartida = registroAnterior.idPartida + 1;
     }
 
-    fwrite(partidaAct, sizeof(tResgistrosDeJugador), 1, arch);
-    
+    fwrite(partidaAct, sizeof(tRegistroDeJugador), 1, arch);
+
     fclose(arch);
     return TODO_OK;
 }
@@ -34,51 +57,12 @@ int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomAr
     tLista lRanking;
     crearLista(&lRanking);
 
-    cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tResgistrosDeJugador), cmpPuntaje, actualizarRegistroPuntajes, nomArchRegistros);
+    cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tRegistroDeJugador), cmpIdJugador, actualizarRegistroPuntaje, nomArchRegistros);
+    ordenarLista(&lRanking,cmpPuntaje);
 
-    ordenarLista(&lRanking, cmpPuntaje);
 
-
+    vaciarLista(&lRanking);
     return TODO_OK;
-=======
-void moverJugador (tListaCD *tab, unsigned cant_mov, int sentido, int tam_tablero, int pos_jugador)
-{
-    tCasillero aux;
-    int num_casillero;
-
-    verNElemCD(tab, pos_jugador, &aux, sizeof (tCasillero));
-    aux.tieneJugador=0;
-
-    actualizarNPosCD(tab, &aux, aux.numero, actualizarEstadoJugCasillero);
-
-    if (sentido == ATRAS)
-    {
-        num_casillero= aux.numero-cant_mov;
-    }
-    else
-    {
-        num_casillero= tam_tablero - abs (tam_tablero - (aux.numero + cant_mov));
-    }
-
-    verNElemCD(tab, num_casillero, &aux, sizeof (tCasillero));
-    aux.tieneJugador=1;
-    actualizarNPosCD(tab, &aux, aux.numero, actualizarEstadoJugCasillero);
 }
 
-void actualizarEstadoJugCasillero (void *actualizado, const void *actualizador)
-{
-    memcpy(actualizado, actualizador, sizeof (tCasillero));
-}
-
-void moverBandido (tListaCD *tab, tJugador* jugador, tBandido* bandido, int tam_tablero)
-{
-    int distAvance= ( jugador->posicion - bandido->posicion + tam_tablero) % tam_tablero;
-    int distRetroceso= ( bandido->posicion - jugador->posicion + tam_tablero) % tam_tablero;
-
-    if (distAvance <= distRetroceso )
-        bandido->posicion= (bandido->posicion + 1) % tam_tablero;
-    else
-        bandido->posicion= (bandido->posicion - 1 + tam_tablero) % tam_tablero;
->>>>>>> test
-}
 

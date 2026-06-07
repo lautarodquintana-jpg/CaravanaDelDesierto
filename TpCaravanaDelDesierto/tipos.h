@@ -46,9 +46,17 @@ typedef struct
 {
     unsigned int idPartida;
     unsigned int idJugador;
+    unsigned int puntaje;
+    unsigned int nroJugadas;
+}tRegistroDeJugador;
+
+typedef struct
+{
+    unsigned int idPartida;
+    unsigned int idJugador;
     unsigned int puntajes;
     unsigned int nroJugadas;
-}tResgistrosDeJugador;
+}tResgistrodeUsuario;
 
 #endif // TIPOS_H_INCLUDED
 

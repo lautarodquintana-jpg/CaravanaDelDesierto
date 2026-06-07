@@ -358,33 +358,35 @@ int cargarOrdenadoListaSinDupDeArchivo(tLista* p, unsigned cantBytes, Cmp cmp, A
                 actualizar((*p)->info, reg);
             }
         }
-
-        nue = (tNodo*)malloc(sizeof(tNodo));
-
-        if(!nue)
+        else
         {
-            free(reg);
-            fclose(arch);
-            return SIN_MEM;
+            nue = (tNodo*)malloc(sizeof(tNodo));
+
+            if(!nue)
+            {
+                free(reg);
+                fclose(arch);
+                return SIN_MEM;
+            }
+
+            nue->info = malloc(cantBytes);
+
+            if(!nue->info)
+            {
+                free(nue);
+                free(reg);
+                fclose(arch);
+                return SIN_MEM;
+            }
+
+            memcpy(nue->info, reg, cantBytes);
+
+            nue->tamInfo = cantBytes;
+
+            nue->sig = *p;
+
+            *p = nue;
         }
-
-        nue->info = malloc(cantBytes);
-
-        if(!nue->info)
-        {
-            free(nue);
-            free(reg);
-            fclose(arch);
-            return SIN_MEM;
-        }
-
-        memcpy(nue->info, reg, cantBytes);
-
-        nue->tamInfo = cantBytes;
-
-        nue->sig = *p;
-
-        *p = nue;
     }
 
     free(reg);

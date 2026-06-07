@@ -1,0 +1,78 @@
+# depslib dependency file v1.0
+1780491399 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
+
+1780696339 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.c
+	"config.h"
+
+1780491399 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.h
+	"tipos.h"
+
+1780701679 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"config.h"
+
+1780491399 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+
+1780491399 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
+
+1780695356 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\main.c
+	"config.h"
+	"TDAs/listaSimplementeEnlazada.h"
+	"tablero.h"
+
+1780695356 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1780695356 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+	"tipos.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+
+1780695356 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.h
+	<string.h>
+	<stdlib.h>
+
+1780706859 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+	"partidas.h"
+
+1780706859 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.h
+	"tipos.h"
+	"TDAs/listaSimplementeEnlazada.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+	<stdlib.h>
+
+1780695356 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+	"tablero.h"
+
+1780491399 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.c
+	"ColaDinamica.h"
+
+1780491399 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.h
+	<string.h>
+	<stdlib.h>
+
+1780695304 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
+	"ListaCircularDoblementeEnlazada.h"
+
+1780702444 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
+	"listaSimplementeEnlazada.h"
+
+1780491399 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
+	"PilaDinamica.h"
+
+1780491399 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1780695304 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+	"usuarios.h"
+
+1780695304 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.h
+	"tipos.h"
+
