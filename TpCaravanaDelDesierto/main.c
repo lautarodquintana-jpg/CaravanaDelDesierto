@@ -1,6 +1,7 @@
 #include "config.h"
 #include "TDAs/listaSimplementeEnlazada.h"
 #include "tablero.h"
+#include "TDAs/arbol.h"
 #include "juego.h"
 int ejecutarMenu();
 int ejecutarJuego(const tConfig *config);
@@ -8,6 +9,8 @@ int main()
 {
     int num, ret;
     tConfig miConf;
+    tArbol arbol;
+    crearArbol(&arbol);
 
     srand(time(NULL));
 

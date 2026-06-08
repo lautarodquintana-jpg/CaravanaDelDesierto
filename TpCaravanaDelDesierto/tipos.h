@@ -5,10 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 
 #include "config.h"
 
-#define TAM_NOMBRE 11
+#define TAM_MAX_NOM 61
 
 #define VACIO 0
 #define INICIO 1
@@ -43,15 +44,14 @@ typedef struct
     unsigned int idJugador;
     unsigned int puntaje;
     unsigned int nroJugadas;
-}tRegistroDeJugador;
+}tRegistroDePartida;
 
 typedef struct
 {
-    unsigned int idPartida;
     unsigned int idJugador;
-    unsigned int puntajes;
-    unsigned int nroJugadas;
-}tResgistrodeUsuario;
+    char nombreUsuario [TAM_MAX_NOM];
+    unsigned int partdiasJugadas;
+}tRegistrodeUsuario;
 
 typedef struct
 {
@@ -60,6 +60,12 @@ typedef struct
     int desplazamiento;
 }tMovimiento;
 
+
+typedef struct
+{
+    unsigned int idClave;
+    char nombreUsuario [TAM_MAX_NOM];
+}tRegistroIdx;
 
 #endif // TIPOS_H_INCLUDED
 

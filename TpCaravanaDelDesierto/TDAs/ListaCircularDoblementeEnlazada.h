@@ -10,7 +10,7 @@
 #define ERR_ARCH 2
 #define LISTA_VACIA 3
 #define ELEM_NO_ENCONTRADO 4
-#define DUPLICADO 5
+#define DUPLICADO 2
 #define POS_INVALIDA 6
 
 typedef struct sNodoCD

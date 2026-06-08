@@ -10,19 +10,19 @@
 #define ERR_ARCH 2
 #define LISTA_VACIA 3
 #define ELEM_NO_ENCONTRADO 4
-#define DUPLICADO 5
+#define DUPLICADO 2
 #define POS_INVALIDA 6
 
 #define MINIMO(X,Y) ((X) <= (Y) ? (X) : (Y))
 
-typedef struct sNodo
+typedef struct sNodol
 {
     void* info;
     unsigned tamInfo;
-    struct sNodo* sig;
-} tNodo;
+    struct sNodol* sig;
+} tNodoL;
 
-typedef tNodo* tLista;
+typedef tNodoL* tLista;
 
 typedef int (*Cmp)(const void* e1, const void* e2);
 typedef void (*Actualizar)(void* actualizado, const void* actualizador);

@@ -16,7 +16,7 @@
 #define TODO_OK 0
 #define SIN_MEM 1
 #define ERR_TAM_ELEM 2
-#define DUPLICADO 5
+#define DUPLICADO 2
 #define POS_INVALIDA 6
 
 

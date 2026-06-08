@@ -4,17 +4,18 @@
 1780866584 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
 	"bandido.h"
 
-1780867110 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.c
+1780869198 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.c
 	"config.h"
 
 1780491399 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.h
 	"tipos.h"
 
-1780867100 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+1780872341 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	<ctype.h>
 	"config.h"
 
 1780705400 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
@@ -43,7 +44,7 @@
 
 1777320154 D
 
-1780866584 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+1780869205 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
 	"juego.h"
 	"tipos.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
@@ -63,7 +64,7 @@
 
 1780706939 source:c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\main.c
 
-1780866570 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+1780874423 c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -88,7 +89,7 @@
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	<stdlib.h>
 
-1780866584 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+1780869205 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
 	"tablero.h"
 
 1780866584 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.c
@@ -98,7 +99,7 @@
 	<string.h>
 	<stdlib.h>
 
-1780866570 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
+1780869198 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
 	"ListaCircularDoblementeEnlazada.h"
 
 1780866570 source:c:\users\erica\desktop\estructura_y_algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c

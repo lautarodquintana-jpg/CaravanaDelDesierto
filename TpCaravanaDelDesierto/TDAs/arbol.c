@@ -3,7 +3,7 @@
 
 void crearArbol(tArbol *pa)
 {
-    *pa=NULL;
+    *pa = NULL;
 }
 void recorrerPreOrdenArbol(tArbol *pa, void(mostrar)(const void *elem))
 {//Rid
@@ -102,6 +102,33 @@ int insertarOrdenadoSinRecursividad(tArbol *pa, const void *elem, unsigned tam, 
     return TODO_OK;
 
 }
+tArbol* buscarNodoArbol(tArbol* pa, void* elem, int(cmp)(const void *elem1, const void *elem2))
+{
+    if (!*pa)
+        return NULL;
+
+    int retCmp = cmp(elem, (*pa)->info);
+
+    if (retCmp < 0)
+        return buscarNodoArbol(&(*pa)->izq, elem, cmp);
+
+    if (retCmp > 0)
+        return buscarNodoArbol(&(*pa)->der, elem, cmp);
+
+    return pa;
+}
+
+int buscarElemArbol(tArbol* pa, void* elem, unsigned tam, int(cmp)(const void *elem1, const void *elem2))
+{
+    if (!(pa = buscarNodoArbol(pa, elem, cmp)))
+    {
+        return ERROR_NO_ENCONTRADO;
+    }
+
+    memcpy(elem, (*pa)->info, MINIMO(tam, (*pa)->tamElem));
+
+    return TODO_OK;
+}
 
 int contarNodosDeArbol(tArbol *pa)
 {//Recorremos con preOrden: Rid
@@ -118,7 +145,6 @@ int _contarNodosDeArbol(tArbol *pa, int nodos)
     }
     return nodos;
 }
-
 int contarNodosConHijosporIzqDeArbol(tArbol *pa)
 {
     return _contarNodosConHijosporIzqDeArbol(pa, 0);

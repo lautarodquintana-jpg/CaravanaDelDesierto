@@ -9,8 +9,10 @@
 #define ERROR_MEMORIA 1
 #define DUPLICADO 2
 #define ERROR_ARCHIVO -2
-#define MAYOR(a,b)(a>=b?a:b)
+#define ERROR_NO_ENCONTRADO -1
 
+#define MAYOR(a,b)(a>=b?a:b)
+#define MINIMO(X,Y) ((X) <= (Y) ? (X) : (Y))
 typedef struct sNodo
 {
     void *info;
@@ -22,12 +24,17 @@ typedef struct sNodo
 typedef tNodo* tArbol;
 
 
+
 void crearArbol(tArbol *pa);
 void recorrerPreOrdenArbol(tArbol *pa, void(mostrar)(const void *elem));
 void recorrerInOrdenArbol(tArbol *pa, void(mostrar)(const void *elem));
-void recorrerPosOrdenArbol(tArbol *pa, void(mostrar)(const void *elem));
+void recorrerPosOrdenArbol(tArbol *pa, void(*mostrar)(const void *elem));
 int insertarOrdenadoConRecursividad(tArbol *pa, const void *elem, unsigned tam, int(comparacion)(const void *elem1, const void *elem2));
 int insertarOrdenadoSinRecursividad(tArbol *pa, const void *elem, unsigned tam, int(comparacion)(const void *elem1, const void *elem2));
+int buscarElemArbol(tArbol* pa, void* elem, unsigned tam,int(cmp)(const void *elem1, const void *elem2));
+
+tArbol* buscarNodoArbol(tArbol* pa, void* elem, int(cmp)(const void *elem1, const void *elem2));
+
 
 int contarNodosDeArbol(tArbol *pa);
 int _contarNodosDeArbol(tArbol *pa, int nodos);
