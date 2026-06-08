@@ -290,10 +290,6 @@ void cortarHojas(tArbol *pa)
         }
     }
 }
-int cortarNodo(tArbol *pa, const void *elem, int(cmp)(const void *elem1, const void *elem2))
-{
-    return 1;
-}
 
 int generarArbolAPartirDeArchivoBinario(tArbol *pa, const char *nomArch, unsigned tamElem,int(cmp)(const void *elem1, const void *elem2))
 {

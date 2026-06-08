@@ -95,13 +95,6 @@
 		<Unit filename="juego.h">
 			<Option virtualFolder="CaravanaDelDesierto/" />
 		</Unit>
-		<Unit filename="jugador.c">
-			<Option compilerVar="CC" />
-			<Option virtualFolder="CaravanaDelDesierto/" />
-		</Unit>
-		<Unit filename="jugador.h">
-			<Option virtualFolder="CaravanaDelDesierto/" />
-		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 			<Option virtualFolder="CaravanaDelDesierto/" />

@@ -3,13 +3,18 @@
 #include "tablero.h"
 #include "TDAs/arbol.h"
 #include "juego.h"
+#include "partidas.h"
+#include "usuarios.h"
+
 int ejecutarMenu();
-int ejecutarJuego(const tConfig *config);
+int ejecutarJuego(const tConfig *config, const char *nomUsuario);
 int main()
 {
     int num, ret;
     tConfig miConf;
     tArbol arbol;
+    tRegistroDeUsuario usuario;
+
     crearArbol(&arbol);
 
     srand(time(NULL));
@@ -22,7 +27,22 @@ int main()
     printf ("oasis: %u\n", miConf.oasis);
     printf ("premios: %u\n", miConf.premios);
 
+    ret = cargarArbolUsuarios(&arbol);
+    if(ret != TODO_OK)
+    {
+        destruirArbol(&arbol);
+        return ret;
+    }
+
     printf("\nBienvenido a Caravana Del Desierto!\n");
+
+    ret = iniciarSesionORegistrar(&arbol, &usuario);
+    if(ret != TODO_OK)
+    {
+        destruirArbol(&arbol);
+        return ret;
+    }
+
 
     num = ejecutarMenu();
 
@@ -31,26 +51,37 @@ int main()
         if(num == 1)
         {
             printf("\nQue empiece el juego!!\n");
-            ret = ejecutarJuego(&miConf);
+            ret = ejecutarJuego(&miConf, usuario.nombreUsuario);
             if(ret != TODO_OK)
             {
-
+                destruirArbol(&arbol);
                 return ret;
             }
+
+            usuario.partidasJugadas++;
+
             printf("\nPartida finalizada..\n");
             system("pause");
         }
         if(num == 2)
         {
             printf("\nEl ranking de jugadores es el siguiente: ");
-            //Funcion MostrarRaking()
+            ret = cargarYMostrarRankingEnLista(ARCH_PARTIDAS);
+            if(ret != TODO_OK)
+            {
+                destruirArbol(&arbol);
+                return ret;
+            }
             system("pause");
         }
         system("cls");
         num = ejecutarMenu();
     }
-    printf("\nEl ranking ha quedado de la siguiente manera: \n");
-    //Funcion MostrarRanking
+
+    actualizarUsuarioAlSalir(&arbol, &usuario, ARCH_USUARIOS);
+
+    destruirArbol(&arbol);
+
     printf("\nGracias por jugar Caravana del Desierto. Hasta pronto!\n");
     system("pause");
 
@@ -77,7 +108,7 @@ int ejecutarMenu()
     }
     return num;
 }
-int ejecutarJuego(const tConfig *config)
+int ejecutarJuego(const tConfig *config, const char *nomUsuario)
 {
     int ret;
 
@@ -109,7 +140,7 @@ int ejecutarJuego(const tConfig *config)
     }
 
 
-    ret=aJugar(&tab, &jugador, &bandidos, config);
+    ret=aJugar(&tab, &jugador, &bandidos, config, nomUsuario);
     if(ret!=TODO_OK)
         return ret;
 

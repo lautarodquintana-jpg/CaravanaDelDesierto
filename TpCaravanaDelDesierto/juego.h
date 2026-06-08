@@ -14,7 +14,7 @@ void moverJugador (unsigned desplazamiento, char sentido, int tam_tablero, tJuga
 void ponerCatEnVacio (void *actualizado, const void *actualizador);
 void calcularDespBandido (tMovimiento *mov, int posJ, int posB, int tam_tablero);
 void actualizarBandido (void *actualizado, const void *actualizador);
-int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config);
+int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config, const char *nomUsuario);
 char validarSentido();
 int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAct);
 int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt, unsigned catAct);

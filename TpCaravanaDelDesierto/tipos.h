@@ -9,7 +9,10 @@
 
 #include "config.h"
 
-#define TAM_MAX_NOM 61
+#define TAM_MAX_NOM 21
+#define ARCH_USUARIOS "usuarios.dat"
+#define ARCH_PARTIDAS "partidas.dat"
+#define ARCH_IDX_USUARIOS "idx_usuarios.idx"
 
 #define VACIO 0
 #define INICIO 1
@@ -40,6 +43,13 @@ typedef struct
 
 typedef struct
 {
+    char tipo;//'J' O 'B'
+    char sentido;//'F' o 'B'
+    int desplazamiento;
+}tMovimiento;
+
+typedef struct
+{
     unsigned int idPartida;
     char nombreUsuario [TAM_MAX_NOM];
     unsigned int puntaje;
@@ -49,21 +59,16 @@ typedef struct
 typedef struct
 {
     char nombreUsuario [TAM_MAX_NOM];
-    unsigned int partdiasJugadas;
-}tRegistrodeUsuario;
+    unsigned int partidasJugadas;
+}tRegistroDeUsuario;
 
 typedef struct
 {
-    char tipo;//'J' O 'B'
-    char sentido;//'F' o 'B'
-    int desplazamiento;
-}tMovimiento;
+    char     nombreUsuario[TAM_MAX_NOM];
+    unsigned idx;
+} tIndiceUsuario;
 
 
-typedef struct
-{
-    char nombreUsuario [TAM_MAX_NOM];
-}tRegistroIdx;
 
 #endif // TIPOS_H_INCLUDED
 

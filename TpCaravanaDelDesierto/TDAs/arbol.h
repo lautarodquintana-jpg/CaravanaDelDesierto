@@ -63,7 +63,6 @@ int contarNodosAPartirdeUnaAltura(tArbol *pa, int altura);
 int _contarNodosAPartirdeUnaAltura(tArbol *pa, int altura, int altActual, int nodos);
 
 void cortarHojas(tArbol *pa);
-int cortarNodo(tArbol *pa, const void *elem, int(cmp)(const void *elem1, const void *elem2));
 
 int generarArbolAPartirDeArchivoBinario(tArbol *pa, const char *nomArch, unsigned tamElem,int(cmp)(const void *elem1, const void *elem2));
 
@@ -73,6 +72,10 @@ int _generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(tArbol *pa, unsigned 
 int crearArchivoBinarioAPartirDeArbol(tArbol *pa, const char *nomarch);
 void _crearArchivoBinarioAPartirDeArbol(tArbol *pa, FILE *pf);
 
+
+
+int generarArbolIdxAPartirDeArch(tArbol *pa, unsigned tamElem, unsigned tamClave, const char *nombreArch, void (*extraerClave)(void *clave, const void *dato), int (*cmp)(const void *a, const void *b));
+int buscarIdxEnArbol(tArbol *pa, const void *clave, unsigned tamClave, int (*cmp)(const void *a, const void *b));
 
 void destruirArbol(tArbol *pa);
 

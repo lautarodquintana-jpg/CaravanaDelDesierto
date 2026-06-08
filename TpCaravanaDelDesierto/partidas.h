@@ -12,15 +12,18 @@
 
 
 
-int cmpPuntaje(const void* e1, const void* e2);
+int cmpPuntajeAsc(const void* e1, const void* e2);
+int cmpPuntajeDesc(const void* e1, const void* e2);
 void actualizarRegistroPuntaje(void* actualizado, const void* actualizador);
-int cmpIdJugador(const void* e1, const void* e2);
 void imprimirRanking(const void* elem);
-int cmpNombreJugador(const void* e1, const void* e2);
 
-int grabarRegistrosDePartida(tRegistroDePartida* partidaAct, const char* nomArchRegistros);
-int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomArchRegistros);
+int cmpNombreUsuario(const void* e1, const void* e2);
+int cmpNombre(const void *a, const void *b);
 
-int iniciarSesionORegistrar(tArbol* arbol, tRegistrodeUsuario* usuarioAct, FILE* pf);
+int grabarRegistroDePartida(tRegistroDePartida* partidaAct, const char* nomArchRegistros);
+int cargarYMostrarRankingEnLista(const char* nomArchRegistros);
+
+int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct);
+void leerYValidarNombre(char *nom, int tam);
 #endif // PARTIDAS_H_INCLUDED
 
