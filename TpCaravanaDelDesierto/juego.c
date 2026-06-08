@@ -3,25 +3,36 @@
 #include "partidas.h"
 #include "TDAs/ListaCircularDoblementeEnlazada.h"
 #include "TDAs/vector.h"
-void moverJugador (unsigned desplazamiento, char sentido, int tam_tablero, tJugador *jugador)
-{
-    //ahora solo actualizamos tjugador
-
-    if (sentido == 'B')
-    {
-        jugador->posicion= jugador->posicion-desplazamiento;
-    }
-    else
-    {
-        jugador->posicion= tam_tablero - abs (tam_tablero - (jugador->posicion + desplazamiento));
-    }
-}
 
 void ponerCatEnVacio (void *actualizado, const void *actualizador)
 {
     tCasillero *casActualizar=actualizado;
 
     casActualizar->categoria=VACIO;
+}
+
+void moverJugador(tListaCD *tab, tVector *bandidos, tJugador *jugador, unsigned desplazamiento, char sentido, int tam_tablero)
+{
+    int paso;
+    int dir = (sentido == 'B') ? -1 : 1;
+    int nuevaPos;
+
+    for (paso = 0; paso < desplazamiento; paso++)
+    {
+        nuevaPos = jugador->posicion + dir;
+
+        // rebote en el extremo superior
+        if (nuevaPos > tam_tablero)
+        {
+            dir = -1;
+            nuevaPos = tam_tablero - 1;
+        }
+
+        jugador->posicion = nuevaPos;
+        system("cls");
+        mostrarTablero(tab, bandidos, jugador->posicion, tam_tablero);
+        system("timeout /t 1 /nobreak > nul");  // 1 segundo entre pasos, sin mostrar mensaje
+    }
 }
 
 void calcularDespBandido(tMovimiento *mov, int posJ, int posB, int tam_tablero)
@@ -169,7 +180,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
             return ret;
         }
 
-        animarMovimiento(tab, bandidos, jugador, dado, sentido, config->cantPos);
+        moverJugador(tab, bandidos, jugador, mov.desplazamiento, mov.sentido, config->cantPos);
 
         ret=aplicarEfectosDelCasillero(tab, jugador, &catAct);
         if(ret!=TODO_OK)
@@ -215,7 +226,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
             }
         }
 
-        if(MUERTE==ret)////Valido si un bandido (al desplazarse) cayo sobre un jugador
+        if(MUERTE == ret)////Valido si un bandido (al desplazarse) cayo sobre un jugador
         {
             printf("\nTe ha interceptado un bandido y perdiste una vida, ahora te quedan: %d\n", jugador->vidas);
             system("timeout /t 2 /nobreak > nul");
@@ -227,6 +238,13 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
         vaciarCola(&colaMovimientos);
 
     }
+
+    if (catAct == SALIDA)
+    {
+        printf ("\nFelicidades has ganado, obtendras 3 puntos extra");
+        jugador->puntosAcum+=3;
+    }
+
 
     partida.puntaje = jugador->puntosAcum;
 

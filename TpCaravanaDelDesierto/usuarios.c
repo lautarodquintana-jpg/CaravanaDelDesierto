@@ -37,10 +37,10 @@ int generarIdxUsuariosEnArbolDesdeArch(tArbol *pa, const char *nomArch)
         strcpy(idx.nombreUsuario, reg.nombreUsuario);
         idx.idx = i;
         ret = insertarOrdenadoConRecursividad(pa, &idx, sizeof(tIndiceUsuario), cmpNombre);
-        if(ret == ERROR_MEMORIA)
+        if(ret == SIN_MEM)
         {
             fclose(arch);
-            return ERROR_MEMORIA;
+            return SIN_MEM;
         }
         i++;
         fread(&reg, sizeof(tRegistroDeUsuario), 1, arch);
@@ -72,7 +72,7 @@ int registrarUsuario(tArbol *pa, tRegistroDeUsuario *usuario, const char *archUs
     fclose(arch);
 
     ret = insertarOrdenadoConRecursividad(pa, &idx, sizeof(tIndiceUsuario), cmpNombre);
-    if(ret == ERROR_MEMORIA)
+    if(ret == SIN_MEM)
         return ret;
 
     return crearArchivoBinarioAPartirDeArbol(pa, ARCH_IDX_USUARIOS);

@@ -6,7 +6,7 @@
 #include <string.h>
 
 #define TODO_OK 0
-#define ERROR_MEMORIA 1
+#define SIN_MEM 1
 #define DUPLICADO 2
 #define ERROR_ARCHIVO -2
 #define ERROR_NO_ENCONTRADO -1

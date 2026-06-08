@@ -6,6 +6,8 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
     char opcion;
     int ret;
     tIndiceUsuario idxBuscar;
+    int flagAlta=0;
+    int op;
 
     printf("\nTiene una cuenta? (S o N): ");
     do
@@ -33,10 +35,21 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
 
             if(ret == ERROR_NO_ENCONTRADO)
             {
-                printf("\nUsuario inexistente, vuelva a escribir el nombre.");
-                leerYValidarNombre(idxBuscar.nombreUsuario, TAM_MAX_NOM);
+                printf("\nUsuario inexistente, desea reingresar (ingrese 1) o crear usuario (ingrese 2):");
+                scanf ("%d", &op);
+                getchar();
+
+                if (op==1)
+                {
+                    printf("\nIngrese su nombre de usuario (sin espacios y no mas de 20 caracteres): ");
+                    leerYValidarNombre(idxBuscar.nombreUsuario, TAM_MAX_NOM);
+                }
+
+                else
+                    flagAlta=1;
+
             }
-        }while(ret == ERROR_NO_ENCONTRADO);
+        }while(ret == ERROR_NO_ENCONTRADO && !flagAlta);
     }
     else
     {
@@ -54,7 +67,7 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
 
     strcpy(usuarioAct->nombreUsuario, idxBuscar.nombreUsuario);
 
-    if(opcion == 'N')
+    if(opcion == 'N' || flagAlta)
     {
         ret = registrarUsuario(pa, usuarioAct, ARCH_USUARIOS);
         if(ret != TODO_OK)
@@ -62,7 +75,6 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
             return ret;
         }
     }
-
 
     return TODO_OK;
 }
@@ -119,19 +131,16 @@ void imprimirRanking(const void* elem)
     printf("%-20s %-10d %-12d\n", imprimir->nombreUsuario, imprimir->puntaje, imprimir->nroJugadas);
 }
 
-int cmpPuntajeAsc(const void* e1, const void* e2)
-{
-    const tRegistroDePartida* x = (const tRegistroDePartida*)e1;
-    const tRegistroDePartida* y = (const tRegistroDePartida*)e2;
-
-    return x->puntaje - y->puntaje;
-}
 int cmpPuntajeDesc(const void* e1, const void* e2)
 {
     const tRegistroDePartida* x = (const tRegistroDePartida*)e1;
     const tRegistroDePartida* y = (const tRegistroDePartida*)e2;
+    int dif=y->puntaje - x->puntaje;
 
-    return y->puntaje - x->puntaje;
+    if (dif == 0)
+        dif= x->nroJugadas - y->nroJugadas;
+
+    return dif;
 }
 void actualizarRegistroPuntaje(void* actualizado, const void* actualizador)
 {
