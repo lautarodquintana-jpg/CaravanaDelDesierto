@@ -2,7 +2,7 @@
 #include "usuarios.h"
 
 
-int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
+int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct, const char* nomArchUsuario, const char* nomArchIdx)
 {
     char opcion;
     int ret;
@@ -12,8 +12,7 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
     do
     {
         scanf(" %c", &opcion);
-        getchar();
-
+        while(getchar() != '\n');
         opcion = toupper(opcion);
 
         if(opcion != 'S' && opcion != 'N')
@@ -57,9 +56,10 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
             }
         }while(ret != ERROR_NO_ENCONTRADO);
 
-        insNueJugadorEnArchivo(&regAct, ARCH_USUARIOS);
+        insNueJugadorEnArchivo(&regAct, nomArchUsuario);
 
         insertarOrdenadoConRecursividad(pa, &regAct, sizeof(tIndJugadores), cmpIndiceJugador);
+        insJugadorEnArchivoIdx(&regAct,nomArchIdx);
 
         printf("\n=========================================");
         printf("\nRegistro exitoso.");
@@ -305,6 +305,19 @@ int insNueJugadorEnArchivo(tIndJugadores* indAct, const char* archJugadores)
     reg.partidasJugadas = 0;
 
     fwrite(&reg,sizeof(tRegistroDeUsuario), 1, pf);
+
+    fclose(pf);
+
+    return TODO_OK;
+}
+int insJugadorEnArchivoIdx(const tIndJugadores* ind, const char* nomArchIdx)
+{
+    FILE* pf = fopen(nomArchIdx, "ab");
+
+    if(!pf)
+        return ERROR_ARCHIVO;
+
+    fwrite(ind, sizeof(tIndJugadores), 1, pf);
 
     fclose(pf);
 

@@ -43,7 +43,9 @@ int main()
 
     printf("\nBienvenido a Caravana Del Desierto!\n");
 
-    ret = iniciarSesionORegistrar(&arbol, &usuario);
+
+
+    ret = iniciarSesionORegistrar(&arbol, &usuario, ARCH_USUARIOS, ARCH_INDICE);
     if(ret != TODO_OK)
     {
         destruirArbol(&arbol);
