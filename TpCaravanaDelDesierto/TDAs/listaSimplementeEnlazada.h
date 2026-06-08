@@ -45,7 +45,8 @@ int eliminarElemDeLista(tLista* p, void* d, unsigned cantBytes, Cmp cmp);
 int insertarOrdenadoListaSinD(tLista* p, const void* d, unsigned cantBytes, Cmp cmp, Actualizar actualizar);
 int insertarOrdenadoListaConD(tLista* p, const void* d, unsigned cantBytes, Cmp cmp);
 
-void ordenarLista(tLista* p, Cmp cmp);
+void ordenarListaDesc(tLista* p, Cmp cmp);
+void ordenarListaAsc(tLista* p, Cmp cmp);
 
 int actualizarNPos(tLista* p, const void* d, unsigned pos, Actualizar actualizar);
 

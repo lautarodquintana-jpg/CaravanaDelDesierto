@@ -252,14 +252,12 @@ int insertarOrdenadoListaConD(tLista* p, const void* d, unsigned cantBytes, Cmp 
     return TODO_OK;
 }
 
-void ordenarLista(tLista* p, Cmp cmp)
+void ordenarListaAsc(tLista* p, Cmp cmp)
 {
     tLista* pri = p;
 
     if(!*p)
-    {
         return;
-    }
 
     while((*p)->sig)
     {
@@ -270,17 +268,40 @@ void ordenarLista(tLista* p, Cmp cmp)
 
             (*p)->sig = aux->sig;
 
-            while(cmp((*q)->info, aux->info) < 0)
-            {
+            while(*q && cmp((*q)->info, aux->info) < 0)
                 q = &((*q)->sig);
-            }
+
             aux->sig = *q;
             *q = aux;
         }
         else
-        {
             p = &((*p)->sig);
+    }
+}
+void ordenarListaDesc(tLista* p, Cmp cmp)
+{
+    tLista* pri = p;
+
+    if(!*p)
+        return;
+
+    while((*p)->sig)
+    {
+        if(cmp((*p)->info, (*p)->sig->info) < 0)
+        {
+            tLista* q = pri;
+            tNodoL* aux = (*p)->sig;
+
+            (*p)->sig = aux->sig;
+
+            while(*q && cmp((*q)->info, aux->info) > 0)
+                q = &((*q)->sig);
+
+            aux->sig = *q;
+            *q = aux;
         }
+        else
+            p = &((*p)->sig);
     }
 }
 

@@ -1,5 +1,5 @@
 Posiciones:30
-Vidas:3
+Vidas:1
 Bandidos:7
 Vidas extras:2
 Oasis:4

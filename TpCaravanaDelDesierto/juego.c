@@ -1,5 +1,6 @@
 #include "juego.h"
 #include "tipos.h"
+#include "partidas.h"
 #include "TDAs/ListaCircularDoblementeEnlazada.h"
 #include "TDAs/vector.h"
 void moverJugador (unsigned desplazamiento, char sentido, int tam_tablero, tJugador *jugador)
@@ -52,7 +53,7 @@ void actualizarBandido (void *actualizado, const void *actualizador)
     memcpy(actualizado, actualizador, sizeof (tBandido));
 }
 
-int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config)
+int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config, const char *nomUsuario)
 {
     int dado, ret, desplazamientoEnCasillas, i;
     int desp;
@@ -61,7 +62,13 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
     tMovimiento mov;//mov es el de bandidos y jugadores, regMov es el que muestro al final
     tBandido bandidoAux;
 
+    tRegistroDePartida partida;
+
     tCola colaMovimientos, colaRegMovimientos;// Esto es para el registro de los movimientos
+
+    partida.nroJugadas = 0;
+    strcpy(partida.nombreUsuario, nomUsuario);
+
     crearCola(&colaMovimientos);
     crearCola(&colaRegMovimientos);
 
@@ -74,6 +81,8 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
     mostrarTablero(tab, bandidos, jugador->posicion, config->cantPos);
     while(jugador->vidas>0 && catAct!=SALIDA)
     {
+        partida.nroJugadas++;
+
         if(catAnt!=TORMENTA)//Si no esta afectado por tormenta, le permito moverse
         {
             dado=tirarDado();
@@ -93,7 +102,11 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
             desplazamientoEnCasillas = ( sentido == 'B' ? -dado : dado );
             ret=ponerEnCola(&colaRegMovimientos, &desplazamientoEnCasillas, sizeof(int));
             if(ret!=TODO_OK)
+            {
+                vaciarCola(&colaRegMovimientos);
+                vaciarCola(&colaMovimientos);
                 return ret;
+            }
 
             //Cargo el tMovimiento
             mov.desplazamiento=dado;
@@ -102,22 +115,38 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
             ret=ponerEnCola(&colaMovimientos, &mov, sizeof(tMovimiento));
             if(ret!=TODO_OK)
+            {
+                vaciarCola(&colaRegMovimientos);
+                vaciarCola(&colaMovimientos);
                 return ret;
+            }
             //Asumimos que lo mas logico es que el bandido se mueva LUEGO de que el jugador se mueva
 
             ret=sacarDeCola(&colaMovimientos, &mov, sizeof(tMovimiento));
             if(ret!=TODO_OK)
+            {
+                vaciarCola(&colaRegMovimientos);
+                vaciarCola(&colaMovimientos);
                 return ret;
+            }
 
             animarMovimiento(tab, bandidos, jugador, dado, sentido, config->cantPos);
 
             ret=aplicarEfectosDelCasillero(tab, jugador, &catAct);
             if(ret!=TODO_OK)
+            {
+                vaciarCola(&colaRegMovimientos);
+                vaciarCola(&colaMovimientos);
                 return ret;
+            }
 
             ret=validarMuerte(jugador, bandidos, catAnt, catAct);
             if(ret==POS_INVALIDA)
+            {
+                vaciarCola(&colaRegMovimientos);
+                vaciarCola(&colaMovimientos);
                 return ret;
+            }
 
             if(MUERTE==ret)
             {
@@ -151,7 +180,11 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
                 calcularDespBandido(&mov, jugador->posicion, bandidoAux.posicion, config->cantPos);
                 ret=ponerEnCola(&colaMovimientos, &mov, sizeof(tMovimiento));
                 if(ret!=TODO_OK)
+                {
+                    vaciarCola(&colaRegMovimientos);
+                    vaciarCola(&colaMovimientos);
                     return ret;
+                }
                 i++;
             }
             i=0;
@@ -182,6 +215,16 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
     }
 
+    partida.puntaje = jugador->puntosAcum;
+
+    ret = grabarRegistroDePartida(&partida, ARCH_PARTIDAS);
+    if(ret != TODO_OK)
+    {
+        vaciarCola(&colaRegMovimientos);
+        vaciarCola(&colaMovimientos);
+    }
+
+
     printf("\n=== Registro de movimientos ===\n");
     printf("\nF= Movimiento hacia adelante");
     printf("\nB= Movimiento hacia atras\n");
@@ -195,6 +238,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
     vaciarCola(&colaRegMovimientos);
     vaciarCola(&colaMovimientos);
+
     return TODO_OK;
 }
 char validarSentido()
@@ -243,8 +287,16 @@ int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAc
         *catAct = OASIS;
         break;
     case TORMENTA:
-        printf("\nMala suerte. Has caido en una tormenta");
-        *catAct = TORMENTA;
+        if(*catAct == OASIS)
+        {
+            printf("\nHas caido en una tormenta, pero tienes proteccion de oasis del turno anterior!");
+            *catAct = VACIO;
+        }
+        else
+        {
+            printf("\nMala suerte. Has caido en una tormenta");
+            *catAct = TORMENTA;
+        }
         break;
     case SALIDA:
         printf("\nHas llegado a la salida! Ganaras si no te intercepta un bandido...");

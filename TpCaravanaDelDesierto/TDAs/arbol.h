@@ -23,6 +23,7 @@ typedef struct sNodo
 
 typedef tNodo* tArbol;
 
+typedef void (*Extraer)(const void* reg, void* clave);
 
 
 void crearArbol(tArbol *pa);
@@ -73,6 +74,10 @@ int _generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(tArbol *pa, unsigned 
 int crearArchivoBinarioAPartirDeArbol(tArbol *pa, const char *nomarch);
 void _crearArchivoBinarioAPartirDeArbol(tArbol *pa, FILE *pf);
 
+
+
+int generarArbolIdxAPartirDeArch(tArbol *pa, unsigned tamElem, unsigned tamClave, const char *nombreArch, void (*extraerClave)(void *clave, const void *dato), int (*cmp)(const void *a, const void *b));
+int buscarIdxEnArbol(tArbol *pa, const void *clave, unsigned tamClave, int (*cmp)(const void *a, const void *b));
 
 void destruirArbol(tArbol *pa);
 

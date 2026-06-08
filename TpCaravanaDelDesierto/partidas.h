@@ -11,16 +11,25 @@
 
 
 
-
+int cmpIndiceJugador(const void* a, const void* b);
 int cmpPuntaje(const void* e1, const void* e2);
 void actualizarRegistroPuntaje(void* actualizado, const void* actualizador);
-int cmpIdJugador(const void* e1, const void* e2);
 void imprimirRanking(const void* elem);
+
 int cmpNombreJugador(const void* e1, const void* e2);
+int cmpNombre(const void *a, const void *b);
+void extraerNombreUsuario(void *clave, const void *dato);
+void extraerClaveUsuario(const void* reg, void* clave);
 
-int grabarRegistrosDePartida(tRegistroDePartida* partidaAct, const char* nomArchRegistros);
-int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomArchRegistros);
+int grabarRegistroDePartida(tRegistroDePartida* partidaAct, const char* nomArchRegistros);
+int cargarYMostrarRankingEnLista(const char* nomArchRegistros);
 
-int iniciarSesionORegistrar(tArbol* arbol, tRegistrodeUsuario* usuarioAct, FILE* pf);
+int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct);
+void leerYValidarNombre(char *nom, int tam);
+
+int crearArchIndJugadores(tArbol* pa, unsigned tamElem, Cmp cmp, Extraer extraerClave,char *nombArchOriginal, char *nombArchInd);
+int insNueJugadorEnArchivo(tIndJugadores* indAct, const char* archJugadores);
+
+
 #endif // PARTIDAS_H_INCLUDED
 

@@ -432,3 +432,80 @@ void destruirArbol(tArbol *pa)
         *pa=NULL;
     }
 }
+
+int generarArbolIdxAPartirDeArch(tArbol *pa, unsigned tamElem, unsigned tamClave, const char *nombreArch, void (*extraerClave)(void *clave, const void *dato), int (*cmp)(const void *a, const void *b))
+{
+    int i=0, ret;
+    FILE *archOrig;
+    unsigned tamElemIdx = tamClave + sizeof(unsigned);
+    unsigned *pIndice;
+    void *dato   = malloc(tamElem);
+    void *auxIdx = malloc(tamElemIdx);
+
+    if(!dato || !auxIdx)
+    {
+        free(dato);
+        free(auxIdx);
+        return ERROR_MEMORIA;
+    }
+
+    crearArbol(pa);
+    archOrig = fopen(nombreArch, "rb");
+    if(!archOrig)
+    {
+        free(dato);
+        free(auxIdx);
+        return ERROR_ARCHIVO;
+    }
+
+    fread(dato, tamElem, 1, archOrig);
+    while(!feof(archOrig))
+    {
+        extraerClave(auxIdx, dato);                        // clave al inicio
+        pIndice = (unsigned*)((char*)auxIdx + tamClave);      // indice al final
+        *pIndice = i;
+
+        ret = insertarOrdenadoConRecursividad(pa, auxIdx, tamElemIdx, cmp);
+        if(ret == ERROR_MEMORIA)
+        {
+            free(dato);
+            free(auxIdx);
+            fclose(archOrig);
+            return ERROR_MEMORIA;
+        }
+        i++;
+        fread(dato, tamElem, 1, archOrig);
+    }
+
+    free(dato);
+    free(auxIdx);
+    fclose(archOrig);
+    return TODO_OK;
+}
+
+int buscarIdxEnArbol(tArbol *pa, const void *clave, unsigned tamClave, int (*cmp)(const void *a, const void *b))
+{
+    unsigned tamElemIdx = tamClave + sizeof(unsigned);
+    void *auxIdx = malloc(tamElemIdx);
+    unsigned idx;
+    unsigned *pIndice;
+
+    if(!auxIdx)
+        return ERROR_NO_ENCONTRADO;
+
+    memcpy(auxIdx, clave, tamClave);
+
+    if(buscarElemArbol(pa, auxIdx, tamElemIdx, cmp) != TODO_OK)
+    {
+        free(auxIdx);
+        return ERROR_NO_ENCONTRADO;
+    }
+
+    pIndice = (unsigned*)((char*)auxIdx + tamClave);
+    idx = *pIndice;
+
+    free(auxIdx);
+    return idx;
+}
+
+

@@ -3,13 +3,18 @@
 #include "tablero.h"
 #include "TDAs/arbol.h"
 #include "juego.h"
+#include "partidas.h"
+#include "usuarios.h"
+
 int ejecutarMenu();
-int ejecutarJuego(const tConfig *config);
+int ejecutarJuego(const tConfig *config, const char *nomUsuario);
 int main()
 {
     int num, ret;
     tConfig miConf;
     tArbol arbol;
+    tRegistroDeUsuario usuario;
+
     crearArbol(&arbol);
 
     srand(time(NULL));
@@ -22,7 +27,29 @@ int main()
     printf ("oasis: %u\n", miConf.oasis);
     printf ("premios: %u\n", miConf.premios);
 
+    //generarArbolIdxAPartirDeArch(&arbol, sizeof(tRegistroDeUsuario), TAM_MAX_NOM, ARCH_USUARIOS, extraerNombreUsuario, cmpNombre);
+    ret = generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(&arbol, ARCH_INDICE, sizeof(tIndJugadores));
+    if(ret == ERROR_ARCHIVO)
+    {
+        ret = crearArchIndJugadores(&arbol, sizeof(tRegistroDeUsuario), cmpIndiceJugador, extraerClaveUsuario, ARCH_USUARIOS, ARCH_INDICE);
+        {
+            if(ret != TODO_OK)
+            {
+                destruirArbol(&arbol);
+                return ret;
+            }
+        }
+    }
+
     printf("\nBienvenido a Caravana Del Desierto!\n");
+
+    ret = iniciarSesionORegistrar(&arbol, &usuario);
+    if(ret != TODO_OK)
+    {
+        destruirArbol(&arbol);
+        return ret;
+    }
+
 
     num = ejecutarMenu();
 
@@ -31,26 +58,41 @@ int main()
         if(num == 1)
         {
             printf("\nQue empiece el juego!!\n");
-            ret = ejecutarJuego(&miConf);
+            ret = ejecutarJuego(&miConf, usuario.nombreUsuario);
             if(ret != TODO_OK)
             {
-
+                destruirArbol(&arbol);
                 return ret;
             }
+
             printf("\nPartida finalizada..\n");
             system("pause");
+
+            usuario.partidasJugadas++;
         }
         if(num == 2)
         {
             printf("\nEl ranking de jugadores es el siguiente: ");
-            //Funcion MostrarRaking()
+            ret = cargarYMostrarRankingEnLista(ARCH_PARTIDAS);
+            if(ret != TODO_OK)
+            {
+                destruirArbol(&arbol);
+                return ret;
+            }
             system("pause");
         }
         system("cls");
         num = ejecutarMenu();
     }
-    printf("\nEl ranking ha quedado de la siguiente manera: \n");
-    //Funcion MostrarRanking
+
+    ret = actualizarUsuarioAlSalir(&arbol, &usuario, ARCH_USUARIOS);
+    if(ret != TODO_OK)
+    {
+        destruirArbol(&arbol);
+        return ret;
+    }
+    destruirArbol(&arbol);
+
     printf("\nGracias por jugar Caravana del Desierto. Hasta pronto!\n");
     system("pause");
 
@@ -77,7 +119,7 @@ int ejecutarMenu()
     }
     return num;
 }
-int ejecutarJuego(const tConfig *config)
+int ejecutarJuego(const tConfig *config, const char *nomUsuario)
 {
     int ret;
 
@@ -109,7 +151,7 @@ int ejecutarJuego(const tConfig *config)
     }
 
 
-    ret=aJugar(&tab, &jugador, &bandidos, config);
+    ret=aJugar(&tab, &jugador, &bandidos, config, nomUsuario);
     if(ret!=TODO_OK)
         return ret;
 
