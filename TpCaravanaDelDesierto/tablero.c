@@ -234,27 +234,3 @@ void mostrarTablero(const tListaCD *tab, tVector *bandidos, int posJ, int tamTab
         i++;
     }
 }
-
-void animarMovimiento(tListaCD *tab, tVector *bandidos, tJugador *jugador, unsigned desplazamiento, char sentido, int tam_tablero)
-{
-    int paso;
-    int dir = (sentido == 'B') ? -1 : 1;
-    int nuevaPos;
-
-    for (paso = 0; paso < desplazamiento; paso++)
-    {
-        nuevaPos = jugador->posicion + dir;
-
-        // rebote en el extremo superior
-        if (nuevaPos > tam_tablero)
-        {
-            dir = -1;
-            nuevaPos = tam_tablero - 1;
-        }
-
-        jugador->posicion = nuevaPos;
-        system("cls");
-        mostrarTablero(tab, bandidos, jugador->posicion, tam_tablero);
-        system("timeout /t 1 /nobreak > nul");  // 1 segundo entre pasos, sin mostrar mensaje
-    }
-}

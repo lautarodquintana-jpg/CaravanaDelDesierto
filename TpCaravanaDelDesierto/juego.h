@@ -10,13 +10,12 @@
 #include <ctype.h>
 #include <time.h>
 
-void moverJugador (unsigned desplazamiento, char sentido, int tam_tablero, tJugador *jugador);
 void ponerCatEnVacio (void *actualizado, const void *actualizador);
+void moverJugador(tListaCD *tab, tVector *bandidos, tJugador *jugador, unsigned desplazamiento, char sentido, int tam_tablero);
 void calcularDespBandido (tMovimiento *mov, int posJ, int posB, int tam_tablero);
 void actualizarBandido (void *actualizado, const void *actualizador);
 int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config, const char *nomUsuario);
 char validarSentido();
 int aplicarEfectosDelCasillero(tListaCD *tab, tJugador* jugador, unsigned *catAct);
 int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt, unsigned catAct);
-
 #endif // JUEGO_H_INCLUDED

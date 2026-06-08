@@ -312,49 +312,54 @@
 	"tipos.h"
 	"TDAs/vector.h"
 
-1780794415 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+1780957477 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	<ctype.h>
 	"config.h"
 
-1780794388 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.h
+1780879503 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.h
 	"tipos.h"
 
-1780794414 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.h
+1780957477 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.h
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
 	<stdbool.h>
 	<string.h>
 
-1780809075 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.c
+1780957477 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\config.c
 	"config.h"
 
 1780794388 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
 
-1780810410 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\main.c
+1780957477 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\main.c
 	"config.h"
 	"TDAs/listaSimplementeEnlazada.h"
 	"tablero.h"
+	"TDAs/arbol.h"
 	"juego.h"
+	"partidas.h"
+	"usuarios.h"
 
-1780794388 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+1780957477 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1780852996 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+1780959580 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
 	"tipos.h"
 	"bandido.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/vector.h"
 
-1780794388 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.h
+1780879503 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.h
 	<string.h>
 	<stdlib.h>
 
-1780851726 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.h
+1780959791 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.h
 	"tipos.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/ColaDinamica.h"
@@ -366,15 +371,17 @@
 	<string.h>
 	<stdlib.h>
 
-1780794415 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+1780961291 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+	"partidas.h"
+	"usuarios.h"
 
-1780852958 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+1780959790 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
 	"tablero.h"
 
-1780794414 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.c
+1780959349 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.c
 	"arbol.h"
 
-1780794414 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.h
+1780959366 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -382,10 +389,10 @@
 1780801251 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.c
 	"ColaDinamica.h"
 
-1780794388 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
+1780879503 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
 	"ListaCircularDoblementeEnlazada.h"
 
-1780794388 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
+1780879503 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
 	"listaSimplementeEnlazada.h"
 
 1780794388 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
@@ -399,11 +406,13 @@
 1780794414 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.c
 	"vector.h"
 
-1780794388 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+1780959392 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+	"usuarios.h"
 
-1780852714 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+1780960093 source:c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\juego.c
 	"juego.h"
 	"tipos.h"
+	"partidas.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/vector.h"
 
@@ -454,6 +463,18 @@
 	"arbol.h"
 
 1780955053 c:\users\lufys\onedrive\desktop\1er cuatri 2026\algoritmos\tp\caravanadeldesierto\tpcaravanadeldesierto\usuarios.h
+	"tipos.h"
+	"partidas.h"
+	"TDAs/arbol.h"
+
+1780959205 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\partidas.h
+	"tipos.h"
+	"TDAs/listaSimplementeEnlazada.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+	"TDAs/arbol.h"
+	<stdlib.h>
+
+1780957477 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.h
 	"tipos.h"
 	"partidas.h"
 	"TDAs/arbol.h"

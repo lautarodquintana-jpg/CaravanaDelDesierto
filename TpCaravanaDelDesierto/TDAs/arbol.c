@@ -40,12 +40,12 @@ int insertarOrdenadoConRecursividad(tArbol *pa, const void *elem, unsigned tam, 
     {
         nue=malloc(sizeof(tNodo));
         if(!nue)
-            return ERROR_MEMORIA;
+            return SIN_MEM;
         nue->info=malloc(tam);
         if(!nue->info)
         {
             free(nue);
-            return ERROR_MEMORIA;
+            return SIN_MEM;
         }
 
         memcpy(nue->info, elem, tam);
@@ -86,12 +86,12 @@ int insertarOrdenadoSinRecursividad(tArbol *pa, const void *elem, unsigned tam, 
 
     nue=malloc(sizeof(tNodo));
     if(!nue)
-        return ERROR_MEMORIA;
+        return SIN_MEM;
     nue->info=malloc(tam);
     if(!nue->info)
     {
         free(nue);
-        return ERROR_MEMORIA;
+        return SIN_MEM;
     }
 
     memcpy(nue->info, elem, tam);
@@ -305,7 +305,7 @@ int generarArbolAPartirDeArchivoBinario(tArbol *pa, const char *nomArch, unsigne
     if(!aux)
     {
         fclose(pf);
-        return ERROR_MEMORIA;
+        return SIN_MEM;
     }
     fread(aux, tamElem, 1, pf);
     while(!feof(pf))
@@ -327,7 +327,7 @@ int generarArbolAPartirDeArchivoBinario(tArbol *pa, const char *nomArch, unsigne
             {
                 free(aux);
                 fclose(pf);
-                return ERROR_MEMORIA;
+                return SIN_MEM;
             }
             nue->tamElem=tamElem;
             nue->info=aux;
@@ -339,7 +339,7 @@ int generarArbolAPartirDeArchivoBinario(tArbol *pa, const char *nomArch, unsigne
             if(!aux)
             {
                 fclose(pf);
-                return ERROR_MEMORIA;
+                return SIN_MEM;
             }
         }
         fread(aux, tamElem, 1, pf);
@@ -375,12 +375,12 @@ int _generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(tArbol *pa, unsigned 
         return TODO_OK;
     nue=malloc(sizeof(tNodo));
     if(!nue)
-        return ERROR_MEMORIA;
+        return SIN_MEM;
     nue->info=malloc(tamElem);
     if(!nue->info)
     {
         free(nue);
-        return ERROR_MEMORIA;
+        return SIN_MEM;
     }
     *pa=nue;
     nue->tamElem=tamElem;
@@ -392,9 +392,9 @@ int _generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(tArbol *pa, unsigned 
     fread(nue->info, tamElem, 1, pf);
 
     if(_generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(&(*pa)->izq, tamElem, pf, ini, medio-1)!=TODO_OK)
-        return ERROR_MEMORIA;
+        return SIN_MEM;
     if(_generarArbolBalanceadoAPartirDeArchivoBinarioOrdenado(&(*pa)->der, tamElem, pf, medio+1, fin)!=TODO_OK)
-        return ERROR_MEMORIA;
+        return SIN_MEM;
 
     return TODO_OK;
 }

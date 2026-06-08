@@ -11,8 +11,6 @@
 
 
 
-
-int cmpPuntajeAsc(const void* e1, const void* e2);
 int cmpPuntajeDesc(const void* e1, const void* e2);
 void actualizarRegistroPuntaje(void* actualizado, const void* actualizador);
 void imprimirRanking(const void* elem);
