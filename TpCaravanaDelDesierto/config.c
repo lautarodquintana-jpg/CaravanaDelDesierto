@@ -101,5 +101,4 @@ int leerConfig (tConfig* conf, const char* nomArch)
 
     fclose (pf);
     return TODO_OK;
-
 }

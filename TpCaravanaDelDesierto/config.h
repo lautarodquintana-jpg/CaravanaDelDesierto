@@ -3,7 +3,7 @@
 
 #include "tipos.h"
 
-#define ERROR_ARCHIVO 9
+#define ERROR_ARCHIVO -2
 #define FUERA_RANGO 33
 #define TODO_OK 0
 

@@ -5,10 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 
 #include "config.h"
 
-#define TAM_NOMBRE 11
+#define TAM_MAX_NOM 21
+#define ARCH_USUARIOS "usuarios.dat"
+#define ARCH_PARTIDAS "partidas.dat"
+#define ARCH_IDX_USUARIOS "idx_usuarios.idx"
 
 #define VACIO 0
 #define INICIO 1
@@ -43,6 +47,27 @@ typedef struct
     char sentido;//'F' o 'B'
     int desplazamiento;
 }tMovimiento;
+
+typedef struct
+{
+    unsigned int idPartida;
+    char nombreUsuario [TAM_MAX_NOM];
+    unsigned int puntaje;
+    unsigned int nroJugadas;
+}tRegistroDePartida;
+
+typedef struct
+{
+    char nombreUsuario [TAM_MAX_NOM];
+    unsigned int partidasJugadas;
+}tRegistroDeUsuario;
+
+typedef struct
+{
+    char     nombreUsuario[TAM_MAX_NOM];
+    unsigned idx;
+} tIndiceUsuario;
+
 
 
 #endif // TIPOS_H_INCLUDED

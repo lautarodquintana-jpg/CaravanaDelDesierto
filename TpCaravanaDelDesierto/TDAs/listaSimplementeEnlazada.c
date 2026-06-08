@@ -22,7 +22,7 @@ void vaciarLista(tLista* p)
 {
     while(*p)
     {
-        tNodo* aux = *p;
+        tNodoL* aux = *p;
 
         *p = aux->sig;
         free(aux->info);
@@ -32,7 +32,7 @@ void vaciarLista(tLista* p)
 
 int insertarAlComienzo(tLista* p, const void* d, unsigned cantBytes)
 {
-    tNodo* nue = (tNodo*)malloc(sizeof(tNodo));
+    tNodoL* nue = (tNodoL*)malloc(sizeof(tNodoL));
     if(nue == NULL)
     {
         return SIN_MEM;
@@ -62,7 +62,7 @@ int sacarPrimeroLista(tLista* p, void* d, unsigned cantBytes)
     }
     memcpy(d, (*p)->info, MINIMO(cantBytes, (*p)->tamInfo));
 
-    tNodo* aux = *p;
+    tNodoL* aux = *p;
 
     *p = aux->sig;
 
@@ -85,7 +85,7 @@ int verPrimeroLista(const tLista* p, void* d, unsigned cantBytes)
 
 int insertarAlFinal(tLista* p, const void* d, unsigned cantBytes)
 {
-    tNodo* nue = (tNodo*)malloc(sizeof(tNodo));
+    tNodoL* nue = (tNodoL*)malloc(sizeof(tNodoL));
     if(nue == NULL)
     {
         return SIN_MEM;
@@ -157,7 +157,7 @@ void mostrarLista(const tLista *p, Accion accion)
 }
 int eliminarDeLista(tLista* p, void* d, unsigned cantBytes, Cmp cmp)
 {
-    tNodo* elim;
+    tNodoL* elim;
 
     if(*p == NULL)
     {
@@ -201,7 +201,7 @@ int insertarOrdenadoListaSinD(tLista* p, const void* d, unsigned cantBytes, Cmp 
         return DUPLICADO;
     }
 
-    tNodo* nue = (tNodo*)malloc(sizeof(tNodo));
+    tNodoL* nue = (tNodoL*)malloc(sizeof(tNodoL));
     if(!nue)
     {
         return SIN_MEM;
@@ -230,7 +230,7 @@ int insertarOrdenadoListaConD(tLista* p, const void* d, unsigned cantBytes, Cmp 
         p = &((*p)->sig);
     }
 
-    tNodo* nue = (tNodo*)malloc(sizeof(tNodo));
+    tNodoL* nue = (tNodoL*)malloc(sizeof(tNodoL));
     if(!nue)
     {
         return SIN_MEM;
@@ -266,7 +266,7 @@ void ordenarLista(tLista* p, Cmp cmp)
         if(cmp((*p)->info, (*p)->sig->info) > 0)
         {
             tLista* q = pri;
-            tNodo* aux = (*p)->sig;
+            tNodoL* aux = (*p)->sig;
 
             (*p)->sig = aux->sig;
 
@@ -323,7 +323,77 @@ int verNElem(tLista *p, unsigned pos, void *elem, unsigned tam)
     return POS_INVALIDA;
 }
 
+int cargarOrdenadoListaSinDupDeArchivo(tLista* p, unsigned cantBytes, Cmp cmp, Actualizar actualizar, const char* nomArch)
+{
+    void* reg;
+    tNodoL* nue;
+    tLista* ini = p;
 
+    FILE* arch = fopen(nomArch,"rb");
 
+    if(!arch)
+        return ERR_ARCH;
+
+    reg = malloc(cantBytes);
+
+    if(!reg)
+    {
+        fclose(arch);
+        return SIN_MEM;
+    }
+
+    while(fread(reg, cantBytes, 1, arch) == 1)
+    {
+        p = ini;
+
+        while(*p && cmp((*p)->info, reg) < 0)
+        {
+            p = &((*p)->sig);
+        }
+
+        if(*p && cmp((*p)->info, reg) == 0)
+        {
+            if(actualizar)
+            {
+                actualizar((*p)->info, reg);
+            }
+        }
+        else
+        {
+            nue = (tNodoL*)malloc(sizeof(tNodoL));
+
+            if(!nue)
+            {
+                free(reg);
+                fclose(arch);
+                return SIN_MEM;
+            }
+
+            nue->info = malloc(cantBytes);
+
+            if(!nue->info)
+            {
+                free(nue);
+                free(reg);
+                fclose(arch);
+                return SIN_MEM;
+            }
+
+            memcpy(nue->info, reg, cantBytes);
+
+            nue->tamInfo = cantBytes;
+
+            nue->sig = *p;
+
+            *p = nue;
+        }
+    }
+
+    free(reg);
+
+    fclose(arch);
+
+    return TODO_OK;
+}
 
 

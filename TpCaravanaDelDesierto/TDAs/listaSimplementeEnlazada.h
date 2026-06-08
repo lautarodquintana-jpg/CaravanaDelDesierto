@@ -1,6 +1,7 @@
 #ifndef LISTA_H_INCLUDED
 #define LISTA_H_INCLUDED
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -9,23 +10,23 @@
 #define ERR_ARCH 2
 #define LISTA_VACIA 3
 #define ELEM_NO_ENCONTRADO 4
-#define DUPLICADO 5
+#define DUPLICADO 2
 #define POS_INVALIDA 6
 
 #define MINIMO(X,Y) ((X) <= (Y) ? (X) : (Y))
 
-typedef struct sNodo
+typedef struct sNodol
 {
     void* info;
     unsigned tamInfo;
-    struct sNodo* sig;
-} tNodo;
+    struct sNodol* sig;
+} tNodoL;
 
-typedef tNodo* tLista;
+typedef tNodoL* tLista;
 
 typedef int (*Cmp)(const void* e1, const void* e2);
 typedef void (*Actualizar)(void* actualizado, const void* actualizador);
-typedef void (*Accion)(void* elem);
+typedef void (*Accion)(const void* elem);
 
 void crearLista(tLista* p);
 int listaVacia(const tLista* p);
@@ -49,5 +50,8 @@ void ordenarLista(tLista* p, Cmp cmp);
 int actualizarNPos(tLista* p, const void* d, unsigned pos, Actualizar actualizar);
 
 int verNElem(tLista *p, unsigned pos, void *elem, unsigned tam);
+
+int cargarOrdenadoListaSinDupDeArchivo(tLista* p, unsigned cantBytes, Cmp cmp, Actualizar actualizar, const char* nomArch);
+
 
 #endif // LISTA_H_INCLUDED
