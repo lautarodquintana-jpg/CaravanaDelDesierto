@@ -41,14 +41,13 @@ typedef struct
 typedef struct
 {
     unsigned int idPartida;
-    unsigned int idJugador;
+    char nombreUsuario [TAM_MAX_NOM];
     unsigned int puntaje;
     unsigned int nroJugadas;
 }tRegistroDePartida;
 
 typedef struct
 {
-    unsigned int idJugador;
     char nombreUsuario [TAM_MAX_NOM];
     unsigned int partdiasJugadas;
 }tRegistrodeUsuario;
@@ -63,7 +62,6 @@ typedef struct
 
 typedef struct
 {
-    unsigned int idClave;
     char nombreUsuario [TAM_MAX_NOM];
 }tRegistroIdx;
 

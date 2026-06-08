@@ -29,7 +29,7 @@ typedef struct
 } tVector;
 
 typedef int (*Cmp)(const void* e1, const void* e2);
-typedef void (*Accion)(void* e);
+typedef void (*Accion)(const void* e);
 typedef void (*Actualizar)(void* actualizado, const void* actualizador);
 
 int vectorCrear(tVector* v, size_t tamE);

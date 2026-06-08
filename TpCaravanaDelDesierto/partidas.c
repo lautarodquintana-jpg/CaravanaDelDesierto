@@ -3,7 +3,6 @@
 int iniciarSesionORegistrar(tArbol* pa, tRegistrodeUsuario* usuarioAct, FILE* pf)
 {
     char opcion;
-    tRegistrodeUsuario registroAnterior;
     int ret;
 
     printf("¿Tiene una cuenta? (S o N): ");
@@ -15,7 +14,7 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistrodeUsuario* usuarioAct, FILE* pf
     {
         do
         {
-            printf("Ingrese su nombre de usuario (sin espacios): ");
+            printf("Ingrese su nombre de usuario (sin espacios y no mas de 60 caracteres): ");
             scanf("%s", usuarioAct->nombreUsuario);
 
             ret = buscarElemArbol(pa, usuarioAct, sizeof(tRegistrodeUsuario), cmpNombreJugador);
@@ -26,34 +25,37 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistrodeUsuario* usuarioAct, FILE* pf
         } while(ret == ERROR_NO_ENCONTRADO);
     }
     else
-        printf("Ingrese su nombre de usuario (sin espacios): ");
+    {
+        printf("Ingrese su nombre de usuario (sin espacios y no mas de 60 caracteres): ");
         scanf("%s", usuarioAct->nombreUsuario);
-
-        fseek(pf, 0, SEEK_END);
-
-        if(ftell(pf) == 0)
-        {
-            usuarioAct->idJugador = 1;
-        }
-        else
-        {
-            fseek(pf, -(long long)sizeof(tRegistrodeUsuario), SEEK_END);
-            fread(&registroAnterior, sizeof(tRegistrodeUsuario), 1, pf);
-
-            usuarioAct->idJugador = registroAnterior.idJugador + 1;
-        }
     }
     return TODO_OK;
 }
 
-int cmpNombreJugador(const void* a, const void* b)
+int cmpNombreJugadorConIdx(const void* a, const void* b)
 {
     const tRegistrodeUsuario* x = (const tRegistrodeUsuario*)a;
     const tRegistroIdx* y = (const tRegistroIdx*)b;
 
     return strcmp(x->nombreUsuario, y->nombreUsuario);
 }
+int cmpNombreJugador(const void* a, const void* b)
+{
+    const tRegistroDePartida* x = (const tRegistroDePartida*)a;
+    const tRegistroDePartida* y = (const tRegistroDePartida*)b;
 
+    return strcmp(x->nombreUsuario, y->nombreUsuario);
+}
+
+void imprimirRanking(const void* elem)
+{
+    const tRegistroDePartida* imprimir = (const tRegistroDePartida*)elem;
+    printf("%-10d %-20s %-10d %-12d\n",
+           imprimir->idPartida,
+           imprimir->nombreUsuario,
+           imprimir->puntaje,
+           imprimir->nroJugadas);
+}
 
 int cmpPuntaje(const void* e1, const void* e2)
 {
@@ -69,13 +71,6 @@ void actualizarRegistroPuntaje(void* actualizado, const void* actualizador)
     x->puntaje += y->puntaje;
 }
 
-int cmpIdJugador(const void* e1, const void* e2)
-{
-    const tRegistroDePartida* x = (const tRegistroDePartida*)e1;
-    const tRegistroDePartida* y = (const tRegistroDePartida*)e2;
-
-    return x->idJugador - y->idJugador;
-}
 
 
 int grabarRegistrosDePartida(tRegistroDePartida* partidaAct, const char* archRegistros)
@@ -111,9 +106,16 @@ int cargarYMostrarRankingEnLista(const char* nomArchJugadores, const char* nomAr
     tLista lRanking;
     crearLista(&lRanking);
 
-    cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tRegistroDePartida), cmpIdJugador, actualizarRegistroPuntaje, nomArchRegistros);
+    cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tRegistroDePartida), cmpNombreJugador, actualizarRegistroPuntaje, nomArchRegistros);
     ordenarLista(&lRanking,cmpPuntaje);
+    printf("\n%-10s %-20s %-10s %-12s\n",
+           "Partida",
+           "Jugador",
+           "Puntos",
+           "Movimientos");
 
+    printf("--------------------------------------------------------\n");
+    mostrarLista(&lRanking, imprimirRanking);
 
     vaciarLista(&lRanking);
     return TODO_OK;

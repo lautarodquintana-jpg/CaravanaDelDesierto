@@ -26,7 +26,7 @@ typedef tNodoL* tLista;
 
 typedef int (*Cmp)(const void* e1, const void* e2);
 typedef void (*Actualizar)(void* actualizado, const void* actualizador);
-typedef void (*Accion)(void* elem);
+typedef void (*Accion)(const void* elem);
 
 void crearLista(tLista* p);
 int listaVacia(const tLista* p);
