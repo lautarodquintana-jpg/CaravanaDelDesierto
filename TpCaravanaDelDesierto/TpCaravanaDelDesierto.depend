@@ -203,93 +203,102 @@
 	<stdbool.h>
 	<string.h>
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
+1781026408 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\bandido.c
 	"bandido.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\bandido.h
+1781026408 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\bandido.h
 	"tipos.h"
 	"TDAs/vector.h"
 
-1780867392 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tipos.h
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	<ctype.h>
 	"config.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\config.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\config.h
 	"tipos.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.h
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
 	<stdbool.h>
 	<string.h>
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\config.c
+1781026423 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\config.c
 	"config.h"
 
-1780862353 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\juego.c
+1781038516 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\juego.c
 	"juego.h"
 	"tipos.h"
+	"partidas.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/vector.h"
 
 1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\jugador.c
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\main.c
+1781033420 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\main.c
 	"config.h"
 	"TDAs/listaSimplementeEnlazada.h"
 	"tablero.h"
+	"TDAs/arbol.h"
 	"juego.h"
+	"partidas.h"
+	"usuarios.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.h
+	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1780860422 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tablero.h
 	"tipos.h"
 	"bandido.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/vector.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.h
 	<string.h>
 	<stdlib.h>
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+1781035149 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\partidas.c
+	"partidas.h"
+	"usuarios.h"
 
-1780863942 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
+1781026423 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tablero.c
 	"tablero.h"
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.c
+1781026408 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.c
 	"ColaDinamica.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.h
+1781026408 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\coladinamica.h
 	<string.h>
 	<stdlib.h>
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
+1781026423 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listacirculardoblementeenlazada.c
 	"ListaCircularDoblementeEnlazada.h"
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
+1781026423 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\listasimplementeenlazada.c
 	"listaSimplementeEnlazada.h"
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
+1781026408 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.c
 	"PilaDinamica.h"
 
-1780860410 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
+1781026408 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\piladinamica.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.c
+1781026408 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\vector.c
 	"vector.h"
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+1781027138 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\usuarios.c
+	"usuarios.h"
 
-1780860422 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\juego.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\juego.h
 	"tipos.h"
 	"TDAs/ListaCircularDoblementeEnlazada.h"
 	"TDAs/ColaDinamica.h"
@@ -297,10 +306,10 @@
 	<ctype.h>
 	<time.h>
 
-1780860410 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.c
+1781026423 source:c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.c
 	"arbol.h"
 
-1780867392 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.h
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\tdas\arbol.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -475,6 +484,18 @@
 	<stdlib.h>
 
 1780957477 c:\users\luca\documents\tp algoritmos\caravanadeldesierto\tpcaravanadeldesierto\usuarios.h
+	"tipos.h"
+	"partidas.h"
+	"TDAs/arbol.h"
+
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\partidas.h
+	"tipos.h"
+	"TDAs/listaSimplementeEnlazada.h"
+	"TDAs/ListaCircularDoblementeEnlazada.h"
+	"TDAs/arbol.h"
+	<stdlib.h>
+
+1781026423 c:\users\usuario\documents\.unlam\algoritmos y estructuras de datos\trabajo practico\caravanadeldesierto\tpcaravanadeldesierto\usuarios.h
 	"tipos.h"
 	"partidas.h"
 	"TDAs/arbol.h"

@@ -44,7 +44,6 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
                     printf("\nIngrese su nombre de usuario (sin espacios y no mas de 20 caracteres): ");
                     leerYValidarNombre(idxBuscar.nombreUsuario, TAM_MAX_NOM);
                 }
-
                 else
                     flagAlta=1;
 
@@ -59,10 +58,26 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
 
             if(ret != ERROR_NO_ENCONTRADO)
             {
-                printf("\nEste usuario ya existe, ingrese otro por favor.");
-                leerYValidarNombre(idxBuscar.nombreUsuario, TAM_MAX_NOM);
+                printf("\nEste usuario ya existe. Desea ingresar otro (S) o usar %s (N): ", idxBuscar.nombreUsuario);
+                fflush(stdin);
+                scanf(" %c", &opcion);
+                opcion=toupper(opcion);
+                while(opcion != 'S' && opcion != 'N')
+                {
+                    printf("\nOpcion ingresada no valida..\n");
+                    printf("Desea reutilizar este usuario (S o N): ");
+                    fflush(stdin);
+                    scanf(" %c", &opcion);
+                    opcion=toupper(opcion);
+                }
+                if(opcion=='S')
+                {
+                    printf("\nIngrese su nombre de usuario (sin espacios y no mas de 20 caracteres): ");
+                    leerYValidarNombre(idxBuscar.nombreUsuario, TAM_MAX_NOM);
+                }
+
             }
-        }while(ret != ERROR_NO_ENCONTRADO);
+        }while(ret != ERROR_NO_ENCONTRADO && opcion=='S');
     }
 
     strcpy(usuarioAct->nombreUsuario, idxBuscar.nombreUsuario);
@@ -85,6 +100,7 @@ void leerYValidarNombre(char *nom, int tam)
     do
     {
         valido = 1;
+        getchar();
         fgets(nom, tam, stdin);
         char *pos = strchr(nom, '\n');
         if(pos)

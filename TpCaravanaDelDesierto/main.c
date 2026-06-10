@@ -10,7 +10,8 @@ int ejecutarMenu();
 int ejecutarJuego(const tConfig *config, const char *nomUsuario);
 int main()
 {
-    int num, ret;
+    int num, ret, bandInicioSesion=0;
+    char opcion;
     tConfig miConf;
     tArbol arbol;
     tRegistroDeUsuario usuario;
@@ -22,10 +23,16 @@ int main()
     //printf ("%d\n", crearConfig(&miConf));
     leerConfig(&miConf, "config.txt");
 
-    printf ("pos: %u\n", miConf.cantPos);
-    printf ("bandidos: %u\n", miConf.bandidos);
-    printf ("oasis: %u\n", miConf.oasis);
-    printf ("premios: %u\n", miConf.premios);
+    printf ("Configuracion de juego: \n");
+    printf ("-----------------------------------------\n");
+    printf ("Cantidad de casillas: %u\n", miConf.cantPos);
+    printf ("Cantidad de tormentas: %u\n", miConf.tormentas);
+    printf ("Cantidad de bandidos: %u\n", miConf.bandidos);
+    printf ("Cantidad de oasis: %u\n", miConf.oasis);
+    printf ("Cantidad de premios: %u\n", miConf.premios);
+    printf ("Cantidad de vidas extras en mapa: %u\n", miConf.vidasExtra);
+    printf ("Cantidad de vidas del jugador: %u\n", miConf.vidas);
+    printf ("-----------------------------------------\n");
 
     ret = cargarArbolUsuarios(&arbol);
     if(ret != TODO_OK)
@@ -36,20 +43,45 @@ int main()
 
     printf("\nBienvenido a Caravana Del Desierto!\n");
 
-    ret = iniciarSesionORegistrar(&arbol, &usuario);
-    if(ret != TODO_OK)
-    {
-        destruirArbol(&arbol);
-        return ret;
-    }
-
-
     num = ejecutarMenu();
 
     while(num != 3)
     {
         if(num == 1)
         {
+            if(bandInicioSesion==0)//Si no inicio sesion, debe hacerlo
+            {
+                ret = iniciarSesionORegistrar(&arbol, &usuario);
+                if(ret != TODO_OK)
+                {
+                    destruirArbol(&arbol);
+                    return ret;
+                }
+                bandInicioSesion=1;
+            }
+            else//Ya inicio sesion
+            {
+                printf("\nDesea seguir jugando con el mismo usuario? (S o N): ");
+                scanf(" %c", &opcion);
+                opcion=toupper(opcion);
+                while(opcion != 'S' && opcion !='N')//Valido
+                {
+                    printf("\nOpcion ingresada no valida...\n");
+                    printf("\nDesea seguir jugando con el mismo usuario? (S o N): ");
+                    scanf(" %c", &opcion);
+                    opcion=toupper(opcion);
+                }
+                if(opcion=='N')//Debe volver a iniciar sesion
+                {
+                    ret = iniciarSesionORegistrar(&arbol, &usuario);
+                    if(ret != TODO_OK)
+                    {
+                        destruirArbol(&arbol);
+                        return ret;
+                    }
+                bandInicioSesion=1;
+                }
+            }
             printf("\nQue empiece el juego!!\n");
             ret = ejecutarJuego(&miConf, usuario.nombreUsuario);
             if(ret != TODO_OK)
@@ -60,6 +92,7 @@ int main()
 
             usuario.partidasJugadas++;
 
+            actualizarUsuarioAlSalir(&arbol, &usuario, ARCH_USUARIOS);
             printf("\nPartida finalizada..\n");
             system("pause");
         }
@@ -77,8 +110,6 @@ int main()
         system("cls");
         num = ejecutarMenu();
     }
-
-    actualizarUsuarioAlSalir(&arbol, &usuario, ARCH_USUARIOS);
 
     destruirArbol(&arbol);
 
