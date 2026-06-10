@@ -84,11 +84,16 @@ int actualizarUsuarioAlSalir(tArbol *pa, tRegistroDeUsuario *usuarioAct, const c
     tRegistroDeUsuario regFile;
     int ret;
     FILE *pf = fopen(archUsuarios, "r+b");
-    if(!pf) return ERROR_ARCHIVO;
+    if(!pf)
+        return ERROR_ARCHIVO;
 
     strcpy(idxBuscar.nombreUsuario, usuarioAct->nombreUsuario);
     ret = buscarElemArbol(pa, &idxBuscar, sizeof(tIndiceUsuario), cmpNombre);
-    if(ret != TODO_OK) { fclose(pf); return ret; }
+    if(ret != TODO_OK)
+    {
+        fclose(pf);
+        return ret;
+    }
 
     fseek(pf, idxBuscar.idx * sizeof(tRegistroDeUsuario), SEEK_SET);
     fread(&regFile, sizeof(tRegistroDeUsuario), 1, pf);
