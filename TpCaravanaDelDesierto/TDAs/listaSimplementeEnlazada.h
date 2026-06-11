@@ -39,6 +39,7 @@ int insertarAlFinal(tLista* p, const void* d, unsigned cantBytes);
 int sacarUltimoLista(tLista* p, void* d, unsigned cantBytes);
 int verUltimoLista(const tLista* p, void* d, unsigned cantBytes);
 void mostrarLista(const tLista *p, Accion accion);
+void mostrarListaYParametro(const tLista *p, void(mostrar)(const void *elem, void *param), void *parametro);
 
 int eliminarElemDeLista(tLista* p, void* d, unsigned cantBytes, Cmp cmp);
 

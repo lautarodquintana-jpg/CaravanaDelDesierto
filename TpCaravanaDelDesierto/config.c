@@ -102,3 +102,74 @@ int leerConfig (tConfig* conf, const char* nomArch)
     fclose (pf);
     return TODO_OK;
 }
+char elegirDificultad(char *nomConfig)
+{
+    char opcion;
+
+    printf("\nIngrese la dificultad\n");
+    printf("F=Facil, I=Intermedio, D=Dificil, E=Extremo, M=Mas informacion:");
+    scanf(" %c", &opcion);
+    opcion=toupper(opcion);
+    while(opcion!='F' && opcion!='I' && opcion!='D' && opcion!='E')
+    {
+        if(opcion=='M')
+        {
+            mostrarInfo();
+        }
+        else
+        {
+            printf("\nOpcion no valida...\n");
+        }
+        printf("F=Facil, I=Intermedio, D=Dificil, E=Extremo, M=Mas informacion:");
+        scanf(" %c", &opcion);
+        system("cls");
+        opcion=toupper(opcion);
+    }
+    if(nomConfig)
+    {
+        switch(opcion)
+        {
+            case 'F':strcpy(nomConfig, "configF.txt");
+                    break;
+            case 'I':strcpy(nomConfig, "configI.txt");
+                    break;
+            case 'D':strcpy(nomConfig, "configD.txt");
+                    break;
+            case 'E':strcpy(nomConfig, "configE.txt");
+                    break;
+        }
+    }
+
+    return opcion;
+}
+void mostrarInfo()
+{
+    printf("\nFactores fijos:");
+    printf("\n2 Vidas extra, menos en extremo");
+    printf("\n3 Oasis");
+    printf("\n4 Tormentas");
+    printf("\n4 Premios");
+    printf("\n-------------------------------");
+
+
+    printf("\nFacil:");
+    printf("\n4 Vidas");
+    printf("\n5 Bandidos");
+    printf("\n-------------------------------");
+
+    printf("\nIntermedio:");
+    printf("\n2 Vidas");
+    printf("\n6 Bandidos");
+    printf("\n-------------------------------");
+
+    printf("\nDificil:");
+    printf("\n1 Vida");
+    printf("\n7 Bandidos");
+    printf("\n-------------------------------");
+
+    printf("\nExtremo:");
+    printf("\n1 Vida");
+    printf("\n8 Bandidos");
+    printf("\nSin vidas extra");
+    printf("\n-------------------------------\n");
+}

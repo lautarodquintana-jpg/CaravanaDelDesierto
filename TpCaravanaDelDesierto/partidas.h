@@ -13,13 +13,13 @@
 
 int cmpPuntajeDesc(const void* e1, const void* e2);
 void actualizarRegistroPuntaje(void* actualizado, const void* actualizador);
-void imprimirRanking(const void* elem);
+void imprimirRanking(const void* elem, void *param);
 
-int cmpNombreUsuario(const void* e1, const void* e2);
+int cmpNombreUsuarioYDificultad(const void* a, const void* b);
 int cmpNombre(const void *a, const void *b);
 
 int grabarRegistroDePartida(tRegistroDePartida* partidaAct, const char* nomArchRegistros);
-int cargarYMostrarRankingEnLista(const char* nomArchRegistros);
+int cargarYMostrarRankingEnLista(const char* nomArchRegistros, char dificultad);
 
 int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct);
 void leerYValidarNombre(char *nom, int tam);

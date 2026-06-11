@@ -1,0 +1,7 @@
+Posiciones:30
+Vidas:2
+Bandidos:6
+Vidas extras:2
+Oasis:3
+Tormentas:4
+Premios:4

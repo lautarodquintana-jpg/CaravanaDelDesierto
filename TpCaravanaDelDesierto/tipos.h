@@ -54,6 +54,7 @@ typedef struct
     char nombreUsuario [TAM_MAX_NOM];
     unsigned int puntaje;
     unsigned int nroJugadas;
+    char dificultad;//F=Facil, I=Intermedio, D=Dificil, E=Extremo
 }tRegistroDePartida;
 
 typedef struct
