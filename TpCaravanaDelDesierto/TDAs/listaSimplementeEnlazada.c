@@ -155,6 +155,14 @@ void mostrarLista(const tLista *p, Accion accion)
         p=&(*p)->sig;
     }
 }
+void mostrarListaYParametro(const tLista *p, void(mostrar)(const void *elem, void *param), void *parametro)
+{
+    while(*p)
+    {
+        mostrar((*p)->info, parametro);
+        p=&(*p)->sig;
+    }
+}
 int eliminarDeLista(tLista* p, void* d, unsigned cantBytes, Cmp cmp)
 {
     tNodoL* elim;

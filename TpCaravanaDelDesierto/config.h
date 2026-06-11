@@ -35,5 +35,6 @@ typedef struct
 void leerYValidar (unsigned *dest, int li, int ls);
 int crearConfig (tConfig* conf);
 int leerConfig (tConfig* conf, const char* nomArch);
-
+char elegirDificultad(char *nomConfig);
+void mostrarInfo();
 #endif // CONFIG_H_INCLUDED

@@ -13,7 +13,6 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
     do
     {
         scanf(" %c", &opcion);
-        while(getchar() != '\n');
         opcion = toupper(opcion);
 
         if(opcion != 'S' && opcion != 'N')
@@ -37,7 +36,6 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
             {
                 printf("\nUsuario inexistente, desea reingresar (ingrese 1) o crear usuario (ingrese 2):");
                 scanf ("%d", &op);
-                getchar();
 
                 if (op==1)
                 {
@@ -127,12 +125,16 @@ void leerYValidarNombre(char *nom, int tam)
 }
 
 
-int cmpNombreUsuario(const void* a, const void* b)
+int cmpNombreUsuarioYDificultad(const void* a, const void* b)
 {
+    int cmp;
     const tRegistroDePartida* x = (const tRegistroDePartida*)a;
     const tRegistroDePartida* y = (const tRegistroDePartida*)b;
 
-    return strcmp(x->nombreUsuario, y->nombreUsuario);
+    cmp=strcmp(x->nombreUsuario, y->nombreUsuario);
+    if(cmp!=0)
+        return cmp;
+    return x->dificultad-y->dificultad;
 }
 
 int cmpNombre(const void *a, const void *b)
@@ -141,10 +143,12 @@ int cmpNombre(const void *a, const void *b)
 }
 
 
-void imprimirRanking(const void* elem)
+void imprimirRanking(const void* elem, void *param)
 {
     const tRegistroDePartida* imprimir = (const tRegistroDePartida*)elem;
-    printf("%-20s %-10d %-12d\n", imprimir->nombreUsuario, imprimir->puntaje, imprimir->nroJugadas);
+    char *opcion=param;
+    if(*opcion==imprimir->dificultad)
+        printf("%-20s %-10d %-12d\n", imprimir->nombreUsuario, imprimir->puntaje, imprimir->nroJugadas);
 }
 
 int cmpPuntajeDesc(const void* e1, const void* e2)
@@ -200,12 +204,12 @@ int grabarRegistroDePartida(tRegistroDePartida* partidaAct, const char* archRegi
     fclose(arch);
     return TODO_OK;
 }
-int cargarYMostrarRankingEnLista(const char* nomArchRegistros)
+int cargarYMostrarRankingEnLista(const char* nomArchRegistros, char dificultad)
 {
     tLista lRanking;
     crearLista(&lRanking);
 
-    cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tRegistroDePartida), cmpNombreUsuario, actualizarRegistroPuntaje, nomArchRegistros);
+    cargarOrdenadoListaSinDupDeArchivo(&lRanking, sizeof(tRegistroDePartida), cmpNombreUsuarioYDificultad, actualizarRegistroPuntaje, nomArchRegistros);
     ordenarLista(&lRanking,cmpPuntajeDesc);
     printf("\n%-20s %-10s %-12s\n",
            "Jugador",
@@ -213,7 +217,7 @@ int cargarYMostrarRankingEnLista(const char* nomArchRegistros)
            "Movimientos");
 
     printf("--------------------------------------------------------\n");
-    mostrarLista(&lRanking, imprimirRanking);
+    mostrarListaYParametro(&lRanking, imprimirRanking, &dificultad);
 
     vaciarLista(&lRanking);
     return TODO_OK;

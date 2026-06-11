@@ -64,7 +64,7 @@ void actualizarBandido (void *actualizado, const void *actualizador)
     memcpy(actualizado, actualizador, sizeof (tBandido));
 }
 
-int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config, const char *nomUsuario)
+int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *config, const char *nomUsuario, char dificultad)
 {
     int dado, ret, desplazamientoEnCasillas, i;
     int desp;
@@ -79,6 +79,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
     partida.nroJugadas = 0;
     strcpy(partida.nombreUsuario, nomUsuario);
+    partida.dificultad=dificultad;
 
     crearCola(&colaMovimientos);
     crearCola(&colaRegMovimientos);

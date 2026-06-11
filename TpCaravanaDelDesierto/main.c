@@ -7,11 +7,12 @@
 #include "usuarios.h"
 
 int ejecutarMenu();
-int ejecutarJuego(const tConfig *config, const char *nomUsuario);
+int ejecutarJuego(const tConfig *config, const char *nomUsuario, int dificultad);
+char leerYValidarChar(char paramA, char paramB);
 int main()
 {
     int num, ret, bandInicioSesion=0;
-    char opcion;
+    char opcion, dificultad='N', nomConfig[13];
     tConfig miConf;
     tArbol arbol;
     tRegistroDeUsuario usuario;
@@ -21,18 +22,17 @@ int main()
     srand(time(NULL));
 
     //printf ("%d\n", crearConfig(&miConf));
-    leerConfig(&miConf, "config.txt");
 
-    printf ("Configuracion de juego: \n");
-    printf ("-----------------------------------------\n");
-    printf ("Cantidad de casillas: %u\n", miConf.cantPos);
-    printf ("Cantidad de tormentas: %u\n", miConf.tormentas);
-    printf ("Cantidad de bandidos: %u\n", miConf.bandidos);
-    printf ("Cantidad de oasis: %u\n", miConf.oasis);
-    printf ("Cantidad de premios: %u\n", miConf.premios);
-    printf ("Cantidad de vidas extras en mapa: %u\n", miConf.vidasExtra);
-    printf ("Cantidad de vidas del jugador: %u\n", miConf.vidas);
-    printf ("-----------------------------------------\n");
+//    printf ("Configuracion de juego: \n");
+//    printf ("-----------------------------------------\n");
+//    printf ("Cantidad de casillas: %u\n", miConf.cantPos);
+//    printf ("Cantidad de tormentas: %u\n", miConf.tormentas);
+//    printf ("Cantidad de bandidos: %u\n", miConf.bandidos);
+//    printf ("Cantidad de oasis: %u\n", miConf.oasis);
+//    printf ("Cantidad de premios: %u\n", miConf.premios);
+//    printf ("Cantidad de vidas extras en mapa: %u\n", miConf.vidasExtra);
+//    printf ("Cantidad de vidas del jugador: %u\n", miConf.vidas);
+//    printf ("-----------------------------------------\n");
 
     ret = cargarArbolUsuarios(&arbol);
     if(ret != TODO_OK)
@@ -57,20 +57,14 @@ int main()
                     destruirArbol(&arbol);
                     return ret;
                 }
+                dificultad=elegirDificultad(nomConfig);
+                leerConfig(&miConf, nomConfig);
                 bandInicioSesion=1;
             }
             else//Ya inicio sesion
             {
-                printf("\nDesea seguir jugando con el mismo usuario? (S o N): ");
-                scanf(" %c", &opcion);
-                opcion=toupper(opcion);
-                while(opcion != 'S' && opcion !='N')//Valido
-                {
-                    printf("\nOpcion ingresada no valida...\n");
-                    printf("\nDesea seguir jugando con el mismo usuario? (S o N): ");
-                    scanf(" %c", &opcion);
-                    opcion=toupper(opcion);
-                }
+                printf("\nDesea seguir jugando con el mismo usuario: %s?", usuario.nombreUsuario);
+                opcion=leerYValidarChar('S','N');
                 if(opcion=='N')//Debe volver a iniciar sesion
                 {
                     ret = iniciarSesionORegistrar(&arbol, &usuario);
@@ -79,11 +73,17 @@ int main()
                         destruirArbol(&arbol);
                         return ret;
                     }
-                bandInicioSesion=1;
+                }
+                printf("\nDesea seguir jugando con la misma dificultad? %c", dificultad);
+                opcion=leerYValidarChar('S','N');
+                if(opcion=='N')
+                {
+                    dificultad=elegirDificultad(nomConfig);
+                    leerConfig(&miConf, nomConfig);
                 }
             }
             printf("\nQue empiece el juego!!\n");
-            ret = ejecutarJuego(&miConf, usuario.nombreUsuario);
+            ret = ejecutarJuego(&miConf, usuario.nombreUsuario, dificultad);
             if(ret != TODO_OK)
             {
                 destruirArbol(&arbol);
@@ -98,8 +98,28 @@ int main()
         }
         if(num == 2)
         {
+            if(bandInicioSesion==1)//Ya hay dificultad ingresada
+            {
+                printf("\nDesea ver el ranking para la dificultad ");
+                switch(dificultad)
+                {
+                    case 'F':printf("%s", "facil?");
+                            break;
+                    case 'I':printf("%s", "intermedia?");
+                            break;
+                    case 'D':printf("%s", "dificil?");
+                            break;
+                    case 'E':printf("%s", "extrema?");
+                            break;
+                }
+                opcion=leerYValidarChar('S', 'N');
+                if(opcion=='N')
+                    dificultad=elegirDificultad(NULL);
+            }
+            else
+                dificultad=elegirDificultad(NULL);
             printf("\nEl ranking de jugadores es el siguiente: ");
-            ret = cargarYMostrarRankingEnLista(ARCH_PARTIDAS);
+            ret = cargarYMostrarRankingEnLista(ARCH_PARTIDAS, dificultad);
             if(ret != TODO_OK)
             {
                 destruirArbol(&arbol);
@@ -139,13 +159,15 @@ int ejecutarMenu()
     }
     return num;
 }
-int ejecutarJuego(const tConfig *config, const char *nomUsuario)
+int ejecutarJuego(const tConfig *config, const char *nomUsuario, int dificultad)
 {
     int ret;
 
     tListaCD tab;
     tVector bandidos;
     tJugador jugador;
+
+
     ret = crearTablero(&tab, config);
     if(ret != TODO_OK)
     {
@@ -171,7 +193,7 @@ int ejecutarJuego(const tConfig *config, const char *nomUsuario)
     }
 
 
-    ret=aJugar(&tab, &jugador, &bandidos, config, nomUsuario);
+    ret=aJugar(&tab, &jugador, &bandidos, config, nomUsuario, dificultad);
     if(ret!=TODO_OK)
         return ret;
 
@@ -179,4 +201,18 @@ int ejecutarJuego(const tConfig *config, const char *nomUsuario)
     vectorDestruir(&bandidos);
 
     return TODO_OK;
+}
+char leerYValidarChar(char paramA, char paramB)
+{
+    char opcion;
+    printf("(%c o %c):", paramA, paramB);
+    scanf(" %c", &opcion);
+    opcion=toupper(opcion);
+    while(opcion != paramA && opcion != paramB)
+    {
+        printf("\nSolo puede elegir %c o %c. Ingrese nuevamente: ", paramA, paramB);
+        scanf(" %c", &opcion);
+        opcion=toupper(opcion);
+    }
+    return opcion;
 }
