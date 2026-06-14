@@ -187,13 +187,11 @@ int ejecutarJuego(const tConfig *config, const char *nomUsuario, int dificultad)
 
 
     ret=aJugar(&tab, &jugador, &bandidos, config, nomUsuario, dificultad);
-    if(ret!=TODO_OK)
-        return ret;
 
     eliminarTablero(&tab);
     vectorDestruir(&bandidos);
 
-    return TODO_OK;
+    return ret;
 }
 char leerYValidarChar(char paramA, char paramB)
 {

@@ -97,8 +97,8 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
         if(catAnt!=TORMENTA)//Si no esta afectado por tormenta, le permito moverse
         {
-            //dado=tirarDado();
-            scanf("%d", &dado);
+            dado=tirarDado();
+            //scanf("%d", &dado);//Utilizado para casos de prueba
             printf("\nTiras el dado y sale el valor: %d", dado);
             if(jugador->posicion-dado <= 0)
             {
