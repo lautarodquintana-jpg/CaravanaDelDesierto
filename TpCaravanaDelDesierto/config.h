@@ -32,8 +32,8 @@ typedef struct
     unsigned premios;
 } tConfig;
 
-void leerYValidar (unsigned *dest, int li, int ls);
-int crearConfig (tConfig* conf);
+int crearDistintosConfigs();
+int crearConfig (const tConfig* conf, const char *nomArch);
 int leerConfig (tConfig* conf, const char* nomArch);
 char elegirDificultad(char *nomConfig);
 void mostrarInfo();

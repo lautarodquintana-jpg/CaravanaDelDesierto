@@ -44,7 +44,6 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
                 }
                 else
                     flagAlta=1;
-
             }
         }while(ret == ERROR_NO_ENCONTRADO && !flagAlta);
     }
@@ -214,7 +213,7 @@ int cargarYMostrarRankingEnLista(const char* nomArchRegistros, char dificultad)
     printf("\n%-20s %-10s %-12s\n",
            "Jugador",
            "Puntos",
-           "Movimientos");
+           "Turnos");
 
     printf("--------------------------------------------------------\n");
     mostrarListaYParametro(&lRanking, imprimirRanking, &dificultad);

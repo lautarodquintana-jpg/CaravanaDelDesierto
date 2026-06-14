@@ -97,7 +97,8 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
         if(catAnt!=TORMENTA)//Si no esta afectado por tormenta, le permito moverse
         {
-            dado=tirarDado();
+            //dado=tirarDado();
+            scanf("%d", &dado);
             printf("\nTiras el dado y sale el valor: %d", dado);
             if(jugador->posicion-dado <= 0)
             {
@@ -208,7 +209,6 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
         }
         else
         {
-            catAnt=catAct;
             i=0;
             while(ret!=MUERTE && !colaVacia(&colaMovimientos) && i < vectorCantElementos(bandidos))
             {
@@ -223,6 +223,7 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
                 ret=validarMuerte(jugador, bandidos, catAnt, catAct);
                 i++;
             }
+            catAnt=catAct;
         }
 
         if(MUERTE == ret)////Valido si un bandido (al desplazarse) cayo sobre un jugador
@@ -352,7 +353,7 @@ int validarMuerte(tJugador *jugador, tVector *bandidos, unsigned catAnt, unsigne
             cantBandidos++;
             posBandidoVec=i;
         }
-    }
+    }//si el anterior es oasis y hay mas de 2 bandidos o (no importa la anterior= pero hay mas de un bandido. Y
     if(((catAnt==OASIS && cantBandidos>=2) || (catAnt!=OASIS && cantBandidos>=1)) && ((catAct==OASIS && cantBandidos>=2) || (catAct!=OASIS && cantBandidos>=1)))//Si hay bandidos en la posicion
     {
         jugador->vidas--;
