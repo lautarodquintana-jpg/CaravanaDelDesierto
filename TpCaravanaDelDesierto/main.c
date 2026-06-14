@@ -9,6 +9,7 @@
 int ejecutarMenu();
 int ejecutarJuego(const tConfig *config, const char *nomUsuario, int dificultad);
 char leerYValidarChar(char paramA, char paramB);
+
 int main()
 {
     int num, ret, bandInicioSesion=0;
@@ -21,18 +22,10 @@ int main()
 
     srand(time(NULL));
 
-    //printf ("%d\n", crearConfig(&miConf));
+    ret=crearDistintosConfigs();
+    if(ret!=TODO_OK)
+        return ret;
 
-//    printf ("Configuracion de juego: \n");
-//    printf ("-----------------------------------------\n");
-//    printf ("Cantidad de casillas: %u\n", miConf.cantPos);
-//    printf ("Cantidad de tormentas: %u\n", miConf.tormentas);
-//    printf ("Cantidad de bandidos: %u\n", miConf.bandidos);
-//    printf ("Cantidad de oasis: %u\n", miConf.oasis);
-//    printf ("Cantidad de premios: %u\n", miConf.premios);
-//    printf ("Cantidad de vidas extras en mapa: %u\n", miConf.vidasExtra);
-//    printf ("Cantidad de vidas del jugador: %u\n", miConf.vidas);
-//    printf ("-----------------------------------------\n");
 
     ret = cargarArbolUsuarios(&arbol);
     if(ret != TODO_OK)
@@ -194,13 +187,11 @@ int ejecutarJuego(const tConfig *config, const char *nomUsuario, int dificultad)
 
 
     ret=aJugar(&tab, &jugador, &bandidos, config, nomUsuario, dificultad);
-    if(ret!=TODO_OK)
-        return ret;
 
     eliminarTablero(&tab);
     vectorDestruir(&bandidos);
 
-    return TODO_OK;
+    return ret;
 }
 char leerYValidarChar(char paramA, char paramB)
 {
