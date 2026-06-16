@@ -1,34 +1,37 @@
 #ifndef TIPOS_H_INCLUDED
 #define TIPOS_H_INCLUDED
 
-#define TAM_NOMBRE 11
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <ctype.h>
 
-typedef enum
-{
-    VACIO,      // 0
-    INICIO,     // 1
-    SALIDA,     // 2
-    PREMIO,     // 3
-    VIDA_EXTRA, // 4
-    OASIS,      // 5
-    TORMENTA    // 6
-} tTipo;
+#include "config.h"
+
+#define TAM_MAX_NOM 21
+#define ARCH_USUARIOS "usuarios.dat"
+#define ARCH_PARTIDAS "partidas.dat"
+#define ARCH_IDX_USUARIOS "idx_usuarios.idx"
+
+#define VACIO 0
+#define INICIO 1
+#define SALIDA 2
+#define PREMIO 3
+#define VIDA_EXTRA 4
+#define OASIS 5
+#define TORMENTA 6
 
 typedef struct
 {
-    int   numero;        // posicion 1..N
-    tTipo tipo;          // lo que hay fijo en esa casilla
-    int   cantBandidos;  // cuantos bandidos estan parados ahi
-    int   tieneJugador;  // 0 o 1
+    int   numero;           // posicion 1..N
+    unsigned categoria;   // lo que hay fijo en esa casilla
 } tCasillero;
 
 typedef struct
 {
-    char nombre[TAM_NOMBRE];
     int  vidas;
     int  puntosAcum;
-    int  protegido;     // efecto oasis activo
-    int  pierdeTurno;   // cayo en tormenta
     int  posicion;      // numero de casillero donde esta (1..N)
 } tJugador;
 
@@ -38,6 +41,33 @@ typedef struct
     int posicion;       // numero de casillero donde esta
 } tBandido;
 
+typedef struct
+{
+    char tipo;//'J' O 'B'
+    char sentido;//'F' o 'B'
+    int desplazamiento;
+}tMovimiento;
+
+typedef struct
+{
+    unsigned int idPartida;
+    char nombreUsuario [TAM_MAX_NOM];
+    unsigned int puntaje;
+    unsigned int nroJugadas;
+    char dificultad;//F=Facil, I=Intermedio, D=Dificil, E=Extremo
+}tRegistroDePartida;
+
+typedef struct
+{
+    char nombreUsuario [TAM_MAX_NOM];
+    unsigned int partidasJugadas;
+}tRegistroDeUsuario;
+
+typedef struct
+{
+    char     nombreUsuario[TAM_MAX_NOM];
+    unsigned idx;
+} tIndiceUsuario;
 
 
 
