@@ -97,8 +97,8 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
         if(catAnt!=TORMENTA)//Si no esta afectado por tormenta, le permito moverse
         {
-            dado=tirarDado();
-            //scanf("%d", &dado);//Utilizado para casos de prueba
+            //dado=tirarDado();
+            scanf("%d", &dado);//Utilizado para casos de prueba
             printf("\nTiras el dado y sale el valor: %d", dado);
             if(jugador->posicion-dado <= 0)
             {
@@ -182,12 +182,15 @@ int aJugar(tListaCD *tab, tJugador *jugador, tVector *bandidos, const tConfig *c
 
         moverJugador(tab, bandidos, jugador, mov.desplazamiento, mov.sentido, config->cantPos);
 
-        ret=aplicarEfectosDelCasillero(tab, jugador, &catAct);
-        if(ret!=TODO_OK)
+        if(mov.desplazamiento!=0)
         {
-            vaciarCola(&colaRegMovimientos);
-            vaciarCola(&colaMovimientos);
-            return ret;
+            ret=aplicarEfectosDelCasillero(tab, jugador, &catAct);
+            if(ret!=TODO_OK)
+            {
+                vaciarCola(&colaRegMovimientos);
+                vaciarCola(&colaMovimientos);
+                return ret;
+            }
         }
 
         ret=validarMuerte(jugador, bandidos, catAnt, catAct);
