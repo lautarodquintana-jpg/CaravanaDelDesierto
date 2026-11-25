@@ -83,14 +83,14 @@ int main()
                 return ret;
             }
 
-            usuario.partidasJugadas++;
-
             actualizarUsuarioAlSalir(&arbol, &usuario, ARCH_USUARIOS);
             printf("\nPartida finalizada..\n");
             system("pause");
         }
         if(num == 2)
         {
+            char dificultadRanking = dificultad;
+
             if(bandInicioSesion==1)//Ya hay dificultad ingresada
             {
                 printf("\nDesea ver el ranking para la dificultad ");
@@ -107,12 +107,12 @@ int main()
                 }
                 opcion=leerYValidarChar('S', 'N');
                 if(opcion=='N')
-                    dificultad=elegirDificultad(NULL);
+                    dificultadRanking=elegirDificultad(NULL);
             }
             else
-                dificultad=elegirDificultad(NULL);
+                dificultadRanking=elegirDificultad(NULL);
             printf("\nEl ranking de jugadores es el siguiente: ");
-            ret = cargarYMostrarRankingEnLista(ARCH_PARTIDAS, dificultad);
+            ret = cargarYMostrarRankingEnLista(ARCH_PARTIDAS, dificultadRanking);
             if(ret != TODO_OK)
             {
                 destruirArbol(&arbol);
@@ -133,24 +133,30 @@ int main()
 }
 int ejecutarMenu()
 {
-    int num;
-
     printf("\nQue desea hacer?\n"
            "1 Para empezar una nueva partida\n"
            "2 Para ver el ranking\n"
            "3 Para salir");
-    printf("\nIngrese la opcion: ");
-    scanf("%d", &num);
-    while(num<1 || num>3)
+
+    for(;;)
     {
-        printf("\nOpcion ingresada invalida, le recordamos: \n");
-        printf("1 Para empezar una nueva partida\n"
-               "2 Para ver el ranking\n"
-               "3 Para salir");
+        char opcion;
+        int c, entradaValida;
+
         printf("\nIngrese la opcion: ");
-        scanf("%d", &num);
+        if(scanf(" %c", &opcion) != 1)
+            return 3;
+
+        entradaValida = opcion >= '1' && opcion <= '3';
+        while((c = getchar()) != '\n' && c != EOF)
+            if(!isspace(c))
+                entradaValida = 0;
+
+        if(entradaValida)
+            return opcion - '0';
+
+        printf("\nOpcion ingresada invalida. Ingrese 1, 2 o 3.\n");
     }
-    return num;
 }
 int ejecutarJuego(const tConfig *config, const char *nomUsuario, int dificultad)
 {

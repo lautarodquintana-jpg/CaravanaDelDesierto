@@ -24,7 +24,7 @@ int iniciarSesionORegistrar(tArbol* pa, tRegistroDeUsuario* usuarioAct)
     printf("\nIngrese su nombre de usuario (sin espacios y no mas de 20 caracteres): ");
     leerYValidarNombre(idxBuscar.nombreUsuario, TAM_MAX_NOM);
 
-    usuarioAct->partidasJugadas = 0; //solo para esta sesion
+    usuarioAct->partidasJugadas = 0;
 
     if(opcion == 'S')
     {

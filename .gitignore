@@ -1,0 +1,19 @@
+# Compilación
+bin/
+obj/
+*.o
+
+# Archivos locales de Code::Blocks
+*.layout
+*.depend
+*.cscope_file_list
+
+# Datos que genera el juego
+/TpCaravanaDelDesierto/configD.txt
+/TpCaravanaDelDesierto/configE.txt
+/TpCaravanaDelDesierto/configF.txt
+/TpCaravanaDelDesierto/configI.txt
+/TpCaravanaDelDesierto/caravana.txt
+/TpCaravanaDelDesierto/usuarios.dat
+/TpCaravanaDelDesierto/idx_usuarios.idx
+/TpCaravanaDelDesierto/partidas.dat

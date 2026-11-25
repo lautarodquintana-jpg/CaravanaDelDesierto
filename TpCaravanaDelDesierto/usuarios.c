@@ -98,7 +98,7 @@ int actualizarUsuarioAlSalir(tArbol *pa, tRegistroDeUsuario *usuarioAct, const c
     fseek(pf, idxBuscar.idx * sizeof(tRegistroDeUsuario), SEEK_SET);
     fread(&regFile, sizeof(tRegistroDeUsuario), 1, pf);
 
-    regFile.partidasJugadas += usuarioAct->partidasJugadas;
+    regFile.partidasJugadas++;
 
     fseek(pf, idxBuscar.idx * sizeof(tRegistroDeUsuario), SEEK_SET);
     fwrite(&regFile, sizeof(tRegistroDeUsuario), 1, pf);
